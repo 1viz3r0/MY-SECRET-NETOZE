@@ -1,0 +1,46 @@
+[package]
+name = "netoze-desktop"
+version = "2.0.0"
+description = "NET0ZE Desktop NTA & IDS Cybersecurity Platform"
+authors = ["NET0ZE Team"]
+edition = "2021"
+
+[features]
+# Portable build: uses an isolated data directory so it never shares state
+# (WebView2 profile, SQLite/DuckDB) with the installed build or another instance.
+portable = []
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["devtools"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rusqlite = { version = "0.31", features = ["bundled"] }
+sysinfo = "0.30"
+windows-sys = { version = "0.52", features = [
+    "Win32_Security",
+    "Win32_Foundation",
+    "Win32_System_Services",
+    "Win32_NetworkManagement_IpHelper",
+    "Win32_System_Diagnostics_ToolHelp",
+    "Win32_System_EventLog",
+    "Win32_System_Memory",
+    "Win32_Networking_WinSock"
+] }
+tokio = { version = "1", features = ["full"] }
+tracing = "0.1"
+tracing-subscriber = "0.3"
+dirs = "5.0"
+chrono = { version = "0.4", features = ["serde"] }
+pcap = "2.4.0"
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }
+ipnet = "2"
+sha2 = "0.10"
+
+[dev-dependencies]
+pcap = "2.4.0"
+chrono = "0.4"
+rusqlite = { version = "0.31", features = ["bundled"] }
+tokio = { version = "1", features = ["full"] }

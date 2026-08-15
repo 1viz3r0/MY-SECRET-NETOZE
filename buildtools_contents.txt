@@ -1,0 +1,7 @@
+
+FullName                                                                                                
+--------                                                                                                
+C:\Users\1vi\AppData\Local\Temp\WinGet\Microsoft.VisualStudio.2022.BuildTools.17.14.37\vs_BuildTools.exe
+
+
+

@@ -1,0 +1,13 @@
+RUN NET0ZE PORTABLE
+--------------------
+
+Double-click "NET0ZE Portable v2.0.0.exe" to run NET0ZE without
+installing it.
+
+Keep "WebView2Loader.dll" in the same folder as the EXE.
+
+Portable mode saves data in the same location as the installed
+version (your Windows profile), so the two modes never conflict.
+
+Npcap (free) is required only for live packet capture:
+https://npcap.com/

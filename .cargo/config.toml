@@ -1,0 +1,4 @@
+[env]
+# Npcap SDK import libs (wpcap.lib / Packet.lib) for the `pcap` crate on Windows
+LIBPCAP_LIBDIR = "C:\\npcap\\Lib\\x64"
+NPCAP_SDK = "C:\\npcap"

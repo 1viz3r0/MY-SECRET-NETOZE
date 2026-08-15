@@ -1,0 +1,2098 @@
+{
+  "IN-AP": {
+    "cap": "Amaravati",
+    "lang": "Telugu"
+  },
+  "IN-AR": {
+    "cap": "Itanagar",
+    "lang": "English"
+  },
+  "IN-AS": {
+    "cap": "Dispur",
+    "lang": "Assamese"
+  },
+  "IN-BR": {
+    "cap": "Patna",
+    "lang": "Hindi"
+  },
+  "IN-CT": {
+    "cap": "Raipur",
+    "lang": "Hindi"
+  },
+  "IN-GA": {
+    "cap": "Panaji",
+    "lang": "Konkani"
+  },
+  "IN-GJ": {
+    "cap": "Gandhinagar",
+    "lang": "Gujarati"
+  },
+  "IN-HR": {
+    "cap": "Chandigarh",
+    "lang": "Hindi"
+  },
+  "IN-HP": {
+    "cap": "Shimla",
+    "lang": "Hindi"
+  },
+  "IN-JH": {
+    "cap": "Ranchi",
+    "lang": "Hindi"
+  },
+  "IN-KA": {
+    "cap": "Bengaluru",
+    "lang": "Kannada"
+  },
+  "IN-KL": {
+    "cap": "Thiruvananthapuram",
+    "lang": "Malayalam"
+  },
+  "IN-MP": {
+    "cap": "Bhopal",
+    "lang": "Hindi"
+  },
+  "IN-MH": {
+    "cap": "Mumbai",
+    "lang": "Marathi"
+  },
+  "IN-MN": {
+    "cap": "Imphal",
+    "lang": "Meitei"
+  },
+  "IN-ML": {
+    "cap": "Shillong",
+    "lang": "Khasi"
+  },
+  "IN-MZ": {
+    "cap": "Aizawl",
+    "lang": "Mizo"
+  },
+  "IN-NL": {
+    "cap": "Kohima",
+    "lang": "English"
+  },
+  "IN-OR": {
+    "cap": "Bhubaneswar",
+    "lang": "Odia"
+  },
+  "IN-PB": {
+    "cap": "Chandigarh",
+    "lang": "Punjabi"
+  },
+  "IN-RJ": {
+    "cap": "Jaipur",
+    "lang": "Hindi"
+  },
+  "IN-SK": {
+    "cap": "Gangtok",
+    "lang": "Nepali"
+  },
+  "IN-TN": {
+    "cap": "Chennai",
+    "lang": "Tamil"
+  },
+  "IN-TG": {
+    "cap": "Hyderabad",
+    "lang": "Telugu"
+  },
+  "IN-TR": {
+    "cap": "Agartala",
+    "lang": "Bengali"
+  },
+  "IN-UP": {
+    "cap": "Lucknow",
+    "lang": "Hindi"
+  },
+  "IN-UT": {
+    "cap": "Dehradun",
+    "lang": "Hindi"
+  },
+  "IN-WB": {
+    "cap": "Kolkata",
+    "lang": "Bengali"
+  },
+  "IN-DL": {
+    "cap": "New Delhi",
+    "lang": "Hindi"
+  },
+  "IN-JK": {
+    "cap": "Srinagar (summer) / Jammu (winter)",
+    "lang": "Kashmiri"
+  },
+  "IN-LA": {
+    "cap": "Leh",
+    "lang": "Ladakhi"
+  },
+  "IN-AN": {
+    "cap": "Port Blair",
+    "lang": "Hindi"
+  },
+  "IN-CH": {
+    "cap": "Chandigarh",
+    "lang": "Hindi"
+  },
+  "IN-DH": {
+    "cap": "Daman",
+    "lang": "Gujarati"
+  },
+  "IN-LD": {
+    "cap": "Kavaratti",
+    "lang": "Malayalam"
+  },
+  "IN-PY": {
+    "cap": "Puducherry",
+    "lang": "Tamil"
+  },
+  "US-AL": {
+    "cap": "Montgomery",
+    "lang": "English"
+  },
+  "US-AK": {
+    "cap": "Juneau",
+    "lang": "English"
+  },
+  "US-AZ": {
+    "cap": "Phoenix",
+    "lang": "English"
+  },
+  "US-AR": {
+    "cap": "Little Rock",
+    "lang": "English"
+  },
+  "US-CA": {
+    "cap": "Sacramento",
+    "lang": "English"
+  },
+  "US-CO": {
+    "cap": "Denver",
+    "lang": "English"
+  },
+  "US-CT": {
+    "cap": "Hartford",
+    "lang": "English"
+  },
+  "US-DE": {
+    "cap": "Dover",
+    "lang": "English"
+  },
+  "US-FL": {
+    "cap": "Tallahassee",
+    "lang": "English"
+  },
+  "US-GA": {
+    "cap": "Atlanta",
+    "lang": "English"
+  },
+  "US-HI": {
+    "cap": "Honolulu",
+    "lang": "English"
+  },
+  "US-ID": {
+    "cap": "Boise",
+    "lang": "English"
+  },
+  "US-IL": {
+    "cap": "Springfield",
+    "lang": "English"
+  },
+  "US-IN": {
+    "cap": "Indianapolis",
+    "lang": "English"
+  },
+  "US-IA": {
+    "cap": "Des Moines",
+    "lang": "English"
+  },
+  "US-KS": {
+    "cap": "Topeka",
+    "lang": "English"
+  },
+  "US-KY": {
+    "cap": "Frankfort",
+    "lang": "English"
+  },
+  "US-LA": {
+    "cap": "Baton Rouge",
+    "lang": "English"
+  },
+  "US-ME": {
+    "cap": "Augusta",
+    "lang": "English"
+  },
+  "US-MD": {
+    "cap": "Annapolis",
+    "lang": "English"
+  },
+  "US-MA": {
+    "cap": "Boston",
+    "lang": "English"
+  },
+  "US-MI": {
+    "cap": "Lansing",
+    "lang": "English"
+  },
+  "US-MN": {
+    "cap": "Saint Paul",
+    "lang": "English"
+  },
+  "US-MS": {
+    "cap": "Jackson",
+    "lang": "English"
+  },
+  "US-MO": {
+    "cap": "Jefferson City",
+    "lang": "English"
+  },
+  "US-MT": {
+    "cap": "Helena",
+    "lang": "English"
+  },
+  "US-NE": {
+    "cap": "Lincoln",
+    "lang": "English"
+  },
+  "US-NV": {
+    "cap": "Carson City",
+    "lang": "English"
+  },
+  "US-NH": {
+    "cap": "Concord",
+    "lang": "English"
+  },
+  "US-NJ": {
+    "cap": "Trenton",
+    "lang": "English"
+  },
+  "US-NM": {
+    "cap": "Santa Fe",
+    "lang": "English"
+  },
+  "US-NY": {
+    "cap": "Albany",
+    "lang": "English"
+  },
+  "US-NC": {
+    "cap": "Raleigh",
+    "lang": "English"
+  },
+  "US-ND": {
+    "cap": "Bismarck",
+    "lang": "English"
+  },
+  "US-OH": {
+    "cap": "Columbus",
+    "lang": "English"
+  },
+  "US-OK": {
+    "cap": "Oklahoma City",
+    "lang": "English"
+  },
+  "US-OR": {
+    "cap": "Salem",
+    "lang": "English"
+  },
+  "US-PA": {
+    "cap": "Harrisburg",
+    "lang": "English"
+  },
+  "US-RI": {
+    "cap": "Providence",
+    "lang": "English"
+  },
+  "US-SC": {
+    "cap": "Columbia",
+    "lang": "English"
+  },
+  "US-SD": {
+    "cap": "Pierre",
+    "lang": "English"
+  },
+  "US-TN": {
+    "cap": "Nashville",
+    "lang": "English"
+  },
+  "US-TX": {
+    "cap": "Austin",
+    "lang": "English"
+  },
+  "US-UT": {
+    "cap": "Salt Lake City",
+    "lang": "English"
+  },
+  "US-VT": {
+    "cap": "Montpelier",
+    "lang": "English"
+  },
+  "US-VA": {
+    "cap": "Richmond",
+    "lang": "English"
+  },
+  "US-WA": {
+    "cap": "Olympia",
+    "lang": "English"
+  },
+  "US-WV": {
+    "cap": "Charleston",
+    "lang": "English"
+  },
+  "US-WI": {
+    "cap": "Madison",
+    "lang": "English"
+  },
+  "US-WY": {
+    "cap": "Cheyenne",
+    "lang": "English"
+  },
+  "US-DC": {
+    "cap": "Washington",
+    "lang": "English"
+  },
+  "CA-AB": {
+    "cap": "Edmonton",
+    "lang": "English"
+  },
+  "CA-BC": {
+    "cap": "Victoria",
+    "lang": "English"
+  },
+  "CA-MB": {
+    "cap": "Winnipeg",
+    "lang": "English"
+  },
+  "CA-NB": {
+    "cap": "Fredericton",
+    "lang": "English"
+  },
+  "CA-NL": {
+    "cap": "St. John's",
+    "lang": "English"
+  },
+  "CA-NS": {
+    "cap": "Halifax",
+    "lang": "English"
+  },
+  "CA-NT": {
+    "cap": "Yellowknife",
+    "lang": "English"
+  },
+  "CA-NU": {
+    "cap": "Iqaluit",
+    "lang": "Inuktitut"
+  },
+  "CA-ON": {
+    "cap": "Toronto",
+    "lang": "English"
+  },
+  "CA-PE": {
+    "cap": "Charlottetown",
+    "lang": "English"
+  },
+  "CA-QC": {
+    "cap": "Quebec City",
+    "lang": "French"
+  },
+  "CA-SK": {
+    "cap": "Regina",
+    "lang": "English"
+  },
+  "CA-YT": {
+    "cap": "Whitehorse",
+    "lang": "English"
+  },
+  "AU-NSW": {
+    "cap": "Sydney",
+    "lang": "English"
+  },
+  "AU-VIC": {
+    "cap": "Melbourne",
+    "lang": "English"
+  },
+  "AU-QLD": {
+    "cap": "Brisbane",
+    "lang": "English"
+  },
+  "AU-WA": {
+    "cap": "Perth",
+    "lang": "English"
+  },
+  "AU-SA": {
+    "cap": "Adelaide",
+    "lang": "English"
+  },
+  "AU-TAS": {
+    "cap": "Hobart",
+    "lang": "English"
+  },
+  "AU-ACT": {
+    "cap": "Canberra",
+    "lang": "English"
+  },
+  "AU-NT": {
+    "cap": "Darwin",
+    "lang": "English"
+  },
+  "DE-BW": {
+    "cap": "Stuttgart",
+    "lang": "German"
+  },
+  "DE-BY": {
+    "cap": "Munich",
+    "lang": "German"
+  },
+  "DE-BE": {
+    "cap": "Berlin",
+    "lang": "German"
+  },
+  "DE-BB": {
+    "cap": "Potsdam",
+    "lang": "German"
+  },
+  "DE-HB": {
+    "cap": "Bremen",
+    "lang": "German"
+  },
+  "DE-HH": {
+    "cap": "Hamburg",
+    "lang": "German"
+  },
+  "DE-HE": {
+    "cap": "Wiesbaden",
+    "lang": "German"
+  },
+  "DE-MV": {
+    "cap": "Schwerin",
+    "lang": "German"
+  },
+  "DE-NI": {
+    "cap": "Hanover",
+    "lang": "German"
+  },
+  "DE-NW": {
+    "cap": "Düsseldorf",
+    "lang": "German"
+  },
+  "DE-RP": {
+    "cap": "Mainz",
+    "lang": "German"
+  },
+  "DE-SL": {
+    "cap": "Saarbrücken",
+    "lang": "German"
+  },
+  "DE-SN": {
+    "cap": "Dresden",
+    "lang": "German"
+  },
+  "DE-ST": {
+    "cap": "Magdeburg",
+    "lang": "German"
+  },
+  "DE-SH": {
+    "cap": "Kiel",
+    "lang": "German"
+  },
+  "DE-TH": {
+    "cap": "Erfurt",
+    "lang": "German"
+  },
+  "BR-AC": {
+    "cap": "Rio Branco",
+    "lang": "Portuguese"
+  },
+  "BR-AL": {
+    "cap": "Maceió",
+    "lang": "Portuguese"
+  },
+  "BR-AP": {
+    "cap": "Macapá",
+    "lang": "Portuguese"
+  },
+  "BR-AM": {
+    "cap": "Manaus",
+    "lang": "Portuguese"
+  },
+  "BR-BA": {
+    "cap": "Salvador",
+    "lang": "Portuguese"
+  },
+  "BR-CE": {
+    "cap": "Fortaleza",
+    "lang": "Portuguese"
+  },
+  "BR-DF": {
+    "cap": "Brasília",
+    "lang": "Portuguese"
+  },
+  "BR-ES": {
+    "cap": "Vitória",
+    "lang": "Portuguese"
+  },
+  "BR-GO": {
+    "cap": "Goiânia",
+    "lang": "Portuguese"
+  },
+  "BR-MA": {
+    "cap": "São Luís",
+    "lang": "Portuguese"
+  },
+  "BR-MT": {
+    "cap": "Cuiabá",
+    "lang": "Portuguese"
+  },
+  "BR-MS": {
+    "cap": "Campo Grande",
+    "lang": "Portuguese"
+  },
+  "BR-MG": {
+    "cap": "Belo Horizonte",
+    "lang": "Portuguese"
+  },
+  "BR-PA": {
+    "cap": "Belém",
+    "lang": "Portuguese"
+  },
+  "BR-PB": {
+    "cap": "João Pessoa",
+    "lang": "Portuguese"
+  },
+  "BR-PR": {
+    "cap": "Curitiba",
+    "lang": "Portuguese"
+  },
+  "BR-PE": {
+    "cap": "Recife",
+    "lang": "Portuguese"
+  },
+  "BR-PI": {
+    "cap": "Teresina",
+    "lang": "Portuguese"
+  },
+  "BR-RJ": {
+    "cap": "Rio de Janeiro",
+    "lang": "Portuguese"
+  },
+  "BR-RN": {
+    "cap": "Natal",
+    "lang": "Portuguese"
+  },
+  "BR-RS": {
+    "cap": "Porto Alegre",
+    "lang": "Portuguese"
+  },
+  "BR-RO": {
+    "cap": "Porto Velho",
+    "lang": "Portuguese"
+  },
+  "BR-RR": {
+    "cap": "Boa Vista",
+    "lang": "Portuguese"
+  },
+  "BR-SC": {
+    "cap": "Florianópolis",
+    "lang": "Portuguese"
+  },
+  "BR-SP": {
+    "cap": "São Paulo",
+    "lang": "Portuguese"
+  },
+  "BR-SE": {
+    "cap": "Aracaju",
+    "lang": "Portuguese"
+  },
+  "BR-TO": {
+    "cap": "Palmas",
+    "lang": "Portuguese"
+  },
+  "ZA-EC": {
+    "cap": "Bhisho",
+    "lang": "Xhosa"
+  },
+  "ZA-FS": {
+    "cap": "Bloemfontein",
+    "lang": "Sotho"
+  },
+  "ZA-GT": {
+    "cap": "Johannesburg",
+    "lang": "English"
+  },
+  "ZA-NL": {
+    "cap": "Pietermaritzburg",
+    "lang": "Zulu"
+  },
+  "ZA-LP": {
+    "cap": "Polokwane",
+    "lang": "Sepedi"
+  },
+  "ZA-MP": {
+    "cap": "Mbombela",
+    "lang": "Swazi"
+  },
+  "ZA-NW": {
+    "cap": "Mahikeng",
+    "lang": "Tswana"
+  },
+  "ZA-NC": {
+    "cap": "Kimberley",
+    "lang": "Afrikaans"
+  },
+  "ZA-WC": {
+    "cap": "Cape Town",
+    "lang": "Afrikaans"
+  },
+  "JP-01": {
+    "cap": "Sapporo",
+    "lang": "Japanese"
+  },
+  "JP-02": {
+    "cap": "Aomori",
+    "lang": "Japanese"
+  },
+  "JP-03": {
+    "cap": "Morioka",
+    "lang": "Japanese"
+  },
+  "JP-04": {
+    "cap": "Sendai",
+    "lang": "Japanese"
+  },
+  "JP-05": {
+    "cap": "Akita",
+    "lang": "Japanese"
+  },
+  "JP-06": {
+    "cap": "Yamagata",
+    "lang": "Japanese"
+  },
+  "JP-07": {
+    "cap": "Fukushima",
+    "lang": "Japanese"
+  },
+  "JP-08": {
+    "cap": "Mito",
+    "lang": "Japanese"
+  },
+  "JP-09": {
+    "cap": "Utsunomiya",
+    "lang": "Japanese"
+  },
+  "JP-10": {
+    "cap": "Maebashi",
+    "lang": "Japanese"
+  },
+  "JP-11": {
+    "cap": "Saitama",
+    "lang": "Japanese"
+  },
+  "JP-12": {
+    "cap": "Chiba",
+    "lang": "Japanese"
+  },
+  "JP-13": {
+    "cap": "Tokyo",
+    "lang": "Japanese"
+  },
+  "JP-14": {
+    "cap": "Yokohama",
+    "lang": "Japanese"
+  },
+  "JP-15": {
+    "cap": "Niigata",
+    "lang": "Japanese"
+  },
+  "JP-16": {
+    "cap": "Toyama",
+    "lang": "Japanese"
+  },
+  "JP-17": {
+    "cap": "Kanazawa",
+    "lang": "Japanese"
+  },
+  "JP-18": {
+    "cap": "Fukui",
+    "lang": "Japanese"
+  },
+  "JP-19": {
+    "cap": "Kofu",
+    "lang": "Japanese"
+  },
+  "JP-20": {
+    "cap": "Nagano",
+    "lang": "Japanese"
+  },
+  "JP-21": {
+    "cap": "Gifu",
+    "lang": "Japanese"
+  },
+  "JP-22": {
+    "cap": "Shizuoka",
+    "lang": "Japanese"
+  },
+  "JP-23": {
+    "cap": "Nagoya",
+    "lang": "Japanese"
+  },
+  "JP-24": {
+    "cap": "Tsu",
+    "lang": "Japanese"
+  },
+  "JP-25": {
+    "cap": "Otsu",
+    "lang": "Japanese"
+  },
+  "JP-26": {
+    "cap": "Kyoto",
+    "lang": "Japanese"
+  },
+  "JP-27": {
+    "cap": "Osaka",
+    "lang": "Japanese"
+  },
+  "JP-28": {
+    "cap": "Kobe",
+    "lang": "Japanese"
+  },
+  "JP-29": {
+    "cap": "Nara",
+    "lang": "Japanese"
+  },
+  "JP-30": {
+    "cap": "Wakayama",
+    "lang": "Japanese"
+  },
+  "JP-31": {
+    "cap": "Tottori",
+    "lang": "Japanese"
+  },
+  "JP-32": {
+    "cap": "Matsue",
+    "lang": "Japanese"
+  },
+  "JP-33": {
+    "cap": "Okayama",
+    "lang": "Japanese"
+  },
+  "JP-34": {
+    "cap": "Hiroshima",
+    "lang": "Japanese"
+  },
+  "JP-35": {
+    "cap": "Yamaguchi",
+    "lang": "Japanese"
+  },
+  "JP-36": {
+    "cap": "Tokushima",
+    "lang": "Japanese"
+  },
+  "JP-37": {
+    "cap": "Takamatsu",
+    "lang": "Japanese"
+  },
+  "JP-38": {
+    "cap": "Matsuyama",
+    "lang": "Japanese"
+  },
+  "JP-39": {
+    "cap": "Kochi",
+    "lang": "Japanese"
+  },
+  "JP-40": {
+    "cap": "Fukuoka",
+    "lang": "Japanese"
+  },
+  "JP-41": {
+    "cap": "Saga",
+    "lang": "Japanese"
+  },
+  "JP-42": {
+    "cap": "Nagasaki",
+    "lang": "Japanese"
+  },
+  "JP-43": {
+    "cap": "Kumamoto",
+    "lang": "Japanese"
+  },
+  "JP-44": {
+    "cap": "Oita",
+    "lang": "Japanese"
+  },
+  "JP-45": {
+    "cap": "Miyazaki",
+    "lang": "Japanese"
+  },
+  "JP-46": {
+    "cap": "Kagoshima",
+    "lang": "Japanese"
+  },
+  "JP-47": {
+    "cap": "Naha",
+    "lang": "Japanese"
+  },
+  "GB-LND": {
+    "cap": "London",
+    "lang": "English"
+  },
+  "GB-EDH": {
+    "cap": "Edinburgh",
+    "lang": "English"
+  },
+  "GB-CRF": {
+    "cap": "Cardiff",
+    "lang": "Welsh"
+  },
+  "GB-BFS": {
+    "cap": "Belfast",
+    "lang": "English"
+  },
+  "MX-AGU": {
+    "cap": "Aguascalientes",
+    "lang": "Spanish"
+  },
+  "MX-BCN": {
+    "cap": "Mexicali",
+    "lang": "Spanish"
+  },
+  "MX-BCS": {
+    "cap": "La Paz",
+    "lang": "Spanish"
+  },
+  "MX-CAM": {
+    "cap": "Campeche",
+    "lang": "Spanish"
+  },
+  "MX-CHP": {
+    "cap": "Tuxtla Gutiérrez",
+    "lang": "Spanish"
+  },
+  "MX-CHH": {
+    "cap": "Chihuahua",
+    "lang": "Spanish"
+  },
+  "MX-COA": {
+    "cap": "Saltillo",
+    "lang": "Spanish"
+  },
+  "MX-COL": {
+    "cap": "Colima",
+    "lang": "Spanish"
+  },
+  "MX-DIF": {
+    "cap": "Mexico City",
+    "lang": "Spanish"
+  },
+  "MX-DUR": {
+    "cap": "Durango",
+    "lang": "Spanish"
+  },
+  "MX-GUA": {
+    "cap": "Guanajuato",
+    "lang": "Spanish"
+  },
+  "MX-GRO": {
+    "cap": "Chilpancingo",
+    "lang": "Spanish"
+  },
+  "MX-HID": {
+    "cap": "Pachuca",
+    "lang": "Spanish"
+  },
+  "MX-JAL": {
+    "cap": "Guadalajara",
+    "lang": "Spanish"
+  },
+  "MX-MEX": {
+    "cap": "Toluca",
+    "lang": "Spanish"
+  },
+  "MX-MIC": {
+    "cap": "Morelia",
+    "lang": "Spanish"
+  },
+  "MX-MOR": {
+    "cap": "Cuernavaca",
+    "lang": "Spanish"
+  },
+  "MX-NAY": {
+    "cap": "Tepic",
+    "lang": "Spanish"
+  },
+  "MX-NLE": {
+    "cap": "Monterrey",
+    "lang": "Spanish"
+  },
+  "MX-OAX": {
+    "cap": "Oaxaca de Juárez",
+    "lang": "Spanish"
+  },
+  "MX-PUE": {
+    "cap": "Puebla",
+    "lang": "Spanish"
+  },
+  "MX-QUE": {
+    "cap": "Santiago de Querétaro",
+    "lang": "Spanish"
+  },
+  "MX-ROO": {
+    "cap": "Chetumal",
+    "lang": "Spanish"
+  },
+  "MX-SLP": {
+    "cap": "San Luis Potosí",
+    "lang": "Spanish"
+  },
+  "MX-SIN": {
+    "cap": "Culiacán",
+    "lang": "Spanish"
+  },
+  "MX-SON": {
+    "cap": "Hermosillo",
+    "lang": "Spanish"
+  },
+  "MX-TAB": {
+    "cap": "Villahermosa",
+    "lang": "Spanish"
+  },
+  "MX-TAM": {
+    "cap": "Ciudad Victoria",
+    "lang": "Spanish"
+  },
+  "MX-TLA": {
+    "cap": "Tlaxcala",
+    "lang": "Spanish"
+  },
+  "MX-VER": {
+    "cap": "Xalapa",
+    "lang": "Spanish"
+  },
+  "MX-YUC": {
+    "cap": "Mérida",
+    "lang": "Spanish"
+  },
+  "MX-ZAC": {
+    "cap": "Zacatecas",
+    "lang": "Spanish"
+  },
+  "AR-B": {
+    "cap": "La Plata",
+    "lang": "Spanish"
+  },
+  "AR-C": {
+    "cap": "Buenos Aires",
+    "lang": "Spanish"
+  },
+  "AR-K": {
+    "cap": "San Fernando del Valle de Catamarca",
+    "lang": "Spanish"
+  },
+  "AR-H": {
+    "cap": "Resistencia",
+    "lang": "Spanish"
+  },
+  "AR-U": {
+    "cap": "Rawson",
+    "lang": "Spanish"
+  },
+  "AR-X": {
+    "cap": "Córdoba",
+    "lang": "Spanish"
+  },
+  "AR-W": {
+    "cap": "Corrientes",
+    "lang": "Spanish"
+  },
+  "AR-E": {
+    "cap": "Paraná",
+    "lang": "Spanish"
+  },
+  "AR-P": {
+    "cap": "Formosa",
+    "lang": "Spanish"
+  },
+  "AR-Y": {
+    "cap": "San Salvador de Jujuy",
+    "lang": "Spanish"
+  },
+  "AR-L": {
+    "cap": "Santa Rosa",
+    "lang": "Spanish"
+  },
+  "AR-F": {
+    "cap": "La Rioja",
+    "lang": "Spanish"
+  },
+  "AR-M": {
+    "cap": "Mendoza",
+    "lang": "Spanish"
+  },
+  "AR-N": {
+    "cap": "Posadas",
+    "lang": "Spanish"
+  },
+  "AR-Q": {
+    "cap": "Neuquén",
+    "lang": "Spanish"
+  },
+  "AR-R": {
+    "cap": "Viedma",
+    "lang": "Spanish"
+  },
+  "AR-A": {
+    "cap": "Salta",
+    "lang": "Spanish"
+  },
+  "AR-J": {
+    "cap": "San Juan",
+    "lang": "Spanish"
+  },
+  "AR-D": {
+    "cap": "San Luis",
+    "lang": "Spanish"
+  },
+  "AR-Z": {
+    "cap": "Río Gallegos",
+    "lang": "Spanish"
+  },
+  "AR-S": {
+    "cap": "Santa Fe",
+    "lang": "Spanish"
+  },
+  "AR-G": {
+    "cap": "Santiago del Estero",
+    "lang": "Spanish"
+  },
+  "AR-V": {
+    "cap": "Ushuaia",
+    "lang": "Spanish"
+  },
+  "AR-T": {
+    "cap": "San Miguel de Tucumán",
+    "lang": "Spanish"
+  },
+  "ES-SE": {
+    "cap": "Seville",
+    "lang": "Spanish"
+  },
+  "ES-Z": {
+    "cap": "Zaragoza",
+    "lang": "Spanish"
+  },
+  "ES-O": {
+    "cap": "Oviedo",
+    "lang": "Spanish"
+  },
+  "ES-S": {
+    "cap": "Santander",
+    "lang": "Spanish"
+  },
+  "ES-TO": {
+    "cap": "Toledo",
+    "lang": "Spanish"
+  },
+  "ES-VA": {
+    "cap": "Valladolid",
+    "lang": "Spanish"
+  },
+  "ES-B": {
+    "cap": "Barcelona",
+    "lang": "Catalan"
+  },
+  "ES-BA": {
+    "cap": "Mérida",
+    "lang": "Spanish"
+  },
+  "ES-C": {
+    "cap": "Santiago de Compostela",
+    "lang": "Galician"
+  },
+  "ES-PM": {
+    "cap": "Palma",
+    "lang": "Spanish"
+  },
+  "ES-TF": {
+    "cap": "Santa Cruz de Tenerife",
+    "lang": "Spanish"
+  },
+  "ES-LO": {
+    "cap": "Logroño",
+    "lang": "Spanish"
+  },
+  "ES-M": {
+    "cap": "Madrid",
+    "lang": "Spanish"
+  },
+  "ES-MU": {
+    "cap": "Murcia",
+    "lang": "Spanish"
+  },
+  "ES-NA": {
+    "cap": "Pamplona",
+    "lang": "Spanish"
+  },
+  "ES-VI": {
+    "cap": "Vitoria-Gasteiz",
+    "lang": "Basque"
+  },
+  "ES-V": {
+    "cap": "Valencia",
+    "lang": "Spanish"
+  },
+  "KR-11": {
+    "cap": "Seoul",
+    "lang": "Korean"
+  },
+  "KR-26": {
+    "cap": "Busan",
+    "lang": "Korean"
+  },
+  "KR-27": {
+    "cap": "Daegu",
+    "lang": "Korean"
+  },
+  "KR-28": {
+    "cap": "Incheon",
+    "lang": "Korean"
+  },
+  "KR-29": {
+    "cap": "Gwangju",
+    "lang": "Korean"
+  },
+  "KR-30": {
+    "cap": "Daejeon",
+    "lang": "Korean"
+  },
+  "KR-31": {
+    "cap": "Suwon",
+    "lang": "Korean"
+  },
+  "KR-42": {
+    "cap": "Chuncheon",
+    "lang": "Korean"
+  },
+  "KR-43": {
+    "cap": "Cheongju",
+    "lang": "Korean"
+  },
+  "KR-44": {
+    "cap": "Hongseong",
+    "lang": "Korean"
+  },
+  "KR-47": {
+    "cap": "Andong",
+    "lang": "Korean"
+  },
+  "KR-48": {
+    "cap": "Changwon",
+    "lang": "Korean"
+  },
+  "KR-45": {
+    "cap": "Jeonju",
+    "lang": "Korean"
+  },
+  "KR-46": {
+    "cap": "Muan",
+    "lang": "Korean"
+  },
+  "KR-49": {
+    "cap": "Jeju City",
+    "lang": "Korean"
+  },
+  "KR-50": {
+    "cap": "Sejong",
+    "lang": "Korean"
+  },
+  "KR-41": {
+    "cap": "Ulsan",
+    "lang": "Korean"
+  },
+  "IT-AQ": {
+    "cap": "L'Aquila",
+    "lang": "Italian"
+  },
+  "IT-PZ": {
+    "cap": "Potenza",
+    "lang": "Italian"
+  },
+  "IT-CZ": {
+    "cap": "Catanzaro",
+    "lang": "Italian"
+  },
+  "IT-NA": {
+    "cap": "Naples",
+    "lang": "Italian"
+  },
+  "IT-BO": {
+    "cap": "Bologna",
+    "lang": "Italian"
+  },
+  "IT-TS": {
+    "cap": "Trieste",
+    "lang": "Italian"
+  },
+  "IT-RM": {
+    "cap": "Rome",
+    "lang": "Italian"
+  },
+  "IT-GE": {
+    "cap": "Genoa",
+    "lang": "Italian"
+  },
+  "IT-MI": {
+    "cap": "Milan",
+    "lang": "Italian"
+  },
+  "IT-AN": {
+    "cap": "Ancona",
+    "lang": "Italian"
+  },
+  "IT-CB": {
+    "cap": "Campobasso",
+    "lang": "Italian"
+  },
+  "IT-TO": {
+    "cap": "Turin",
+    "lang": "Italian"
+  },
+  "IT-BA": {
+    "cap": "Bari",
+    "lang": "Italian"
+  },
+  "IT-CA": {
+    "cap": "Cagliari",
+    "lang": "Italian"
+  },
+  "IT-PA": {
+    "cap": "Palermo",
+    "lang": "Italian"
+  },
+  "IT-FI": {
+    "cap": "Florence",
+    "lang": "Italian"
+  },
+  "IT-TN": {
+    "cap": "Trento",
+    "lang": "Italian"
+  },
+  "IT-PG": {
+    "cap": "Perugia",
+    "lang": "Italian"
+  },
+  "IT-AO": {
+    "cap": "Aosta",
+    "lang": "Italian"
+  },
+  "IT-VE": {
+    "cap": "Venice",
+    "lang": "Italian"
+  },
+  "RU-MOW": {
+    "cap": "Moscow",
+    "lang": "Russian"
+  },
+  "RU-SPE": {
+    "cap": "Saint Petersburg",
+    "lang": "Russian"
+  },
+  "RU-MOS": {
+    "cap": "Krasnogorsk",
+    "lang": "Russian"
+  },
+  "RU-NVS": {
+    "cap": "Novosibirsk",
+    "lang": "Russian"
+  },
+  "RU-SVE": {
+    "cap": "Yekaterinburg",
+    "lang": "Russian"
+  },
+  "RU-TA": {
+    "cap": "Kazan",
+    "lang": "Tatar"
+  },
+  "RU-NIZ": {
+    "cap": "Nizhny Novgorod",
+    "lang": "Russian"
+  },
+  "RU-CHE": {
+    "cap": "Chelyabinsk",
+    "lang": "Russian"
+  },
+  "RU-SAM": {
+    "cap": "Samara",
+    "lang": "Russian"
+  },
+  "RU-OMS": {
+    "cap": "Omsk",
+    "lang": "Russian"
+  },
+  "RU-ROS": {
+    "cap": "Rostov-on-Don",
+    "lang": "Russian"
+  },
+  "RU-KDA": {
+    "cap": "Krasnodar",
+    "lang": "Russian"
+  },
+  "RU-PRI": {
+    "cap": "Vladivostok",
+    "lang": "Russian"
+  },
+  "CN-BJ": {
+    "cap": "Beijing",
+    "lang": "Mandarin"
+  },
+  "CN-SH": {
+    "cap": "Shanghai",
+    "lang": "Mandarin"
+  },
+  "CN-TJ": {
+    "cap": "Tianjin",
+    "lang": "Mandarin"
+  },
+  "CN-CQ": {
+    "cap": "Chongqing",
+    "lang": "Mandarin"
+  },
+  "CN-HE": {
+    "cap": "Shijiazhuang",
+    "lang": "Mandarin"
+  },
+  "CN-SX": {
+    "cap": "Taiyuan",
+    "lang": "Mandarin"
+  },
+  "CN-LN": {
+    "cap": "Shenyang",
+    "lang": "Mandarin"
+  },
+  "CN-JL": {
+    "cap": "Changchun",
+    "lang": "Mandarin"
+  },
+  "CN-HL": {
+    "cap": "Harbin",
+    "lang": "Mandarin"
+  },
+  "CN-JS": {
+    "cap": "Nanjing",
+    "lang": "Mandarin"
+  },
+  "CN-ZJ": {
+    "cap": "Hangzhou",
+    "lang": "Mandarin"
+  },
+  "CN-AH": {
+    "cap": "Hefei",
+    "lang": "Mandarin"
+  },
+  "CN-FJ": {
+    "cap": "Fuzhou",
+    "lang": "Mandarin"
+  },
+  "CN-JX": {
+    "cap": "Nanchang",
+    "lang": "Mandarin"
+  },
+  "CN-SD": {
+    "cap": "Jinan",
+    "lang": "Mandarin"
+  },
+  "CN-HA": {
+    "cap": "Zhengzhou",
+    "lang": "Mandarin"
+  },
+  "CN-HB": {
+    "cap": "Wuhan",
+    "lang": "Mandarin"
+  },
+  "CN-HN": {
+    "cap": "Changsha",
+    "lang": "Mandarin"
+  },
+  "CN-GD": {
+    "cap": "Guangzhou",
+    "lang": "Cantonese"
+  },
+  "CN-GX": {
+    "cap": "Nanning",
+    "lang": "Mandarin"
+  },
+  "CN-HI": {
+    "cap": "Haikou",
+    "lang": "Mandarin"
+  },
+  "CN-SC": {
+    "cap": "Chengdu",
+    "lang": "Mandarin"
+  },
+  "CN-GZ": {
+    "cap": "Guiyang",
+    "lang": "Mandarin"
+  },
+  "CN-YN": {
+    "cap": "Kunming",
+    "lang": "Mandarin"
+  },
+  "CN-XZ": {
+    "cap": "Lhasa",
+    "lang": "Tibetan"
+  },
+  "CN-SN": {
+    "cap": "Xi'an",
+    "lang": "Mandarin"
+  },
+  "CN-GS": {
+    "cap": "Lanzhou",
+    "lang": "Mandarin"
+  },
+  "CN-QH": {
+    "cap": "Xining",
+    "lang": "Mandarin"
+  },
+  "CN-NX": {
+    "cap": "Yinchuan",
+    "lang": "Mandarin"
+  },
+  "CN-XJ": {
+    "cap": "Ürümqi",
+    "lang": "Mandarin"
+  },
+  "CN-NM": {
+    "cap": "Hohhot",
+    "lang": "Mandarin"
+  },
+  "ID-AC": {
+    "cap": "Banda Aceh",
+    "lang": "Indonesian"
+  },
+  "ID-SU": {
+    "cap": "Medan",
+    "lang": "Indonesian"
+  },
+  "ID-SB": {
+    "cap": "Padang",
+    "lang": "Indonesian"
+  },
+  "ID-RI": {
+    "cap": "Pekanbaru",
+    "lang": "Indonesian"
+  },
+  "ID-JA": {
+    "cap": "Jambi",
+    "lang": "Indonesian"
+  },
+  "ID-SS": {
+    "cap": "Palembang",
+    "lang": "Indonesian"
+  },
+  "ID-BE": {
+    "cap": "Bengkulu",
+    "lang": "Indonesian"
+  },
+  "ID-LA": {
+    "cap": "Bandar Lampung",
+    "lang": "Indonesian"
+  },
+  "ID-JK": {
+    "cap": "Jakarta",
+    "lang": "Indonesian"
+  },
+  "ID-JB": {
+    "cap": "Bandung",
+    "lang": "Indonesian"
+  },
+  "ID-JT": {
+    "cap": "Semarang",
+    "lang": "Indonesian"
+  },
+  "ID-YO": {
+    "cap": "Yogyakarta",
+    "lang": "Indonesian"
+  },
+  "ID-JI": {
+    "cap": "Surabaya",
+    "lang": "Indonesian"
+  },
+  "ID-BA": {
+    "cap": "Denpasar",
+    "lang": "Indonesian"
+  },
+  "ID-NB": {
+    "cap": "Mataram",
+    "lang": "Indonesian"
+  },
+  "ID-NT": {
+    "cap": "Kupang",
+    "lang": "Indonesian"
+  },
+  "ID-KB": {
+    "cap": "Pontianak",
+    "lang": "Indonesian"
+  },
+  "ID-KT": {
+    "cap": "Palangka Raya",
+    "lang": "Indonesian"
+  },
+  "ID-KS": {
+    "cap": "Banjarmasin",
+    "lang": "Indonesian"
+  },
+  "ID-KI": {
+    "cap": "Samarinda",
+    "lang": "Indonesian"
+  },
+  "ID-SA": {
+    "cap": "Manado",
+    "lang": "Indonesian"
+  },
+  "ID-ST": {
+    "cap": "Palu",
+    "lang": "Indonesian"
+  },
+  "ID-SG": {
+    "cap": "Makassar",
+    "lang": "Indonesian"
+  },
+  "ID-SR": {
+    "cap": "Mamuju",
+    "lang": "Indonesian"
+  },
+  "ID-MA": {
+    "cap": "Ambon",
+    "lang": "Indonesian"
+  },
+  "ID-MU": {
+    "cap": "Sofifi",
+    "lang": "Indonesian"
+  },
+  "ID-PA": {
+    "cap": "Jayapura",
+    "lang": "Indonesian"
+  },
+  "ID-PB": {
+    "cap": "Manokwari",
+    "lang": "Indonesian"
+  },
+  "NG-FC": {
+    "cap": "Abuja",
+    "lang": "English"
+  },
+  "NG-LA": {
+    "cap": "Ikeja",
+    "lang": "Yoruba"
+  },
+  "NG-KN": {
+    "cap": "Kano",
+    "lang": "Hausa"
+  },
+  "NG-OY": {
+    "cap": "Ibadan",
+    "lang": "Yoruba"
+  },
+  "NG-RI": {
+    "cap": "Port Harcourt",
+    "lang": "English"
+  },
+  "NG-BE": {
+    "cap": "Makurdi",
+    "lang": "Tiv"
+  },
+  "NG-KD": {
+    "cap": "Kaduna",
+    "lang": "Hausa"
+  },
+  "NG-SO": {
+    "cap": "Sokoto",
+    "lang": "Hausa"
+  },
+  "NG-EN": {
+    "cap": "Enugu",
+    "lang": "Igbo"
+  },
+  "NG-AN": {
+    "cap": "Awka",
+    "lang": "Igbo"
+  },
+  "NG-IM": {
+    "cap": "Owerri",
+    "lang": "Igbo"
+  },
+  "NG-DE": {
+    "cap": "Asaba",
+    "lang": "Igbo"
+  },
+  "NG-CR": {
+    "cap": "Calabar",
+    "lang": "Efik"
+  },
+  "NG-AK": {
+    "cap": "Uyo",
+    "lang": "Ibibio"
+  },
+  "NG-ED": {
+    "cap": "Benin City",
+    "lang": "Edo"
+  },
+  "NG-OG": {
+    "cap": "Abeokuta",
+    "lang": "Yoruba"
+  },
+  "NG-OS": {
+    "cap": "Osogbo",
+    "lang": "Yoruba"
+  },
+  "NG-ON": {
+    "cap": "Akure",
+    "lang": "Yoruba"
+  },
+  "NG-EK": {
+    "cap": "Ado Ekiti",
+    "lang": "Yoruba"
+  },
+  "NG-KW": {
+    "cap": "Ilorin",
+    "lang": "Yoruba"
+  },
+  "NG-NI": {
+    "cap": "Minna",
+    "lang": "Nupe"
+  },
+  "NG-KO": {
+    "cap": "Lokoja",
+    "lang": "English"
+  },
+  "NG-NA": {
+    "cap": "Lafia",
+    "lang": "Hausa"
+  },
+  "NG-BA": {
+    "cap": "Bauchi",
+    "lang": "Hausa"
+  },
+  "NG-GO": {
+    "cap": "Gombe",
+    "lang": "Hausa"
+  },
+  "NG-AD": {
+    "cap": "Yola",
+    "lang": "Fulfulde"
+  },
+  "NG-TA": {
+    "cap": "Jalingo",
+    "lang": "Fulfulde"
+  },
+  "NG-BO": {
+    "cap": "Maiduguri",
+    "lang": "Kanuri"
+  },
+  "NG-YO": {
+    "cap": "Damaturu",
+    "lang": "Kanuri"
+  },
+  "NG-JI": {
+    "cap": "Dutse",
+    "lang": "Hausa"
+  },
+  "NG-KE": {
+    "cap": "Birnin Kebbi",
+    "lang": "Hausa"
+  },
+  "NG-ZA": {
+    "cap": "Gusau",
+    "lang": "Hausa"
+  },
+  "NG-KT": {
+    "cap": "Katsina",
+    "lang": "Hausa"
+  },
+  "NG-PL": {
+    "cap": "Jos",
+    "lang": "English"
+  },
+  "NG-BY": {
+    "cap": "Bayelsa",
+    "lang": "Ijaw"
+  },
+  "PK-IS": {
+    "cap": "Islamabad",
+    "lang": "Urdu"
+  },
+  "PK-PB": {
+    "cap": "Lahore",
+    "lang": "Punjabi"
+  },
+  "PK-SD": {
+    "cap": "Karachi",
+    "lang": "Sindhi"
+  },
+  "PK-KP": {
+    "cap": "Peshawar",
+    "lang": "Pashto"
+  },
+  "PK-BA": {
+    "cap": "Quetta",
+    "lang": "Balochi"
+  },
+  "PK-GB": {
+    "cap": "Gilgit",
+    "lang": "Shina"
+  },
+  "PK-JK": {
+    "cap": "Muzaffarabad",
+    "lang": "Urdu"
+  },
+  "TR-34": {
+    "cap": "Istanbul",
+    "lang": "Turkish"
+  },
+  "TR-06": {
+    "cap": "Ankara",
+    "lang": "Turkish"
+  },
+  "TR-35": {
+    "cap": "Izmir",
+    "lang": "Turkish"
+  },
+  "TR-16": {
+    "cap": "Bursa",
+    "lang": "Turkish"
+  },
+  "TR-07": {
+    "cap": "Antalya",
+    "lang": "Turkish"
+  },
+  "TR-01": {
+    "cap": "Adana",
+    "lang": "Turkish"
+  },
+  "TR-27": {
+    "cap": "Gaziantep",
+    "lang": "Turkish"
+  },
+  "TR-42": {
+    "cap": "Konya",
+    "lang": "Turkish"
+  },
+  "TR-33": {
+    "cap": "Mersin",
+    "lang": "Turkish"
+  },
+  "TR-41": {
+    "cap": "Kocaeli",
+    "lang": "Turkish"
+  },
+  "EG-C": {
+    "cap": "Cairo",
+    "lang": "Arabic"
+  },
+  "EG-ALX": {
+    "cap": "Alexandria",
+    "lang": "Arabic"
+  },
+  "EG-GZ": {
+    "cap": "Giza",
+    "lang": "Arabic"
+  },
+  "EG-SHR": {
+    "cap": "Zagazig",
+    "lang": "Arabic"
+  },
+  "EG-DK": {
+    "cap": "Mansoura",
+    "lang": "Arabic"
+  },
+  "EG-BH": {
+    "cap": "Damanhur",
+    "lang": "Arabic"
+  },
+  "EG-IS": {
+    "cap": "Ismailia",
+    "lang": "Arabic"
+  },
+  "EG-SUZ": {
+    "cap": "Suez",
+    "lang": "Arabic"
+  },
+  "EG-PTS": {
+    "cap": "Port Said",
+    "lang": "Arabic"
+  },
+  "EG-ASN": {
+    "cap": "Aswan",
+    "lang": "Arabic"
+  },
+  "EG-LX": {
+    "cap": "Luxor",
+    "lang": "Arabic"
+  },
+  "EG-MNF": {
+    "cap": "Shibin El Kom",
+    "lang": "Arabic"
+  },
+  "EG-GH": {
+    "cap": "Tanta",
+    "lang": "Arabic"
+  },
+  "EG-KFS": {
+    "cap": "Kafr El Sheikh",
+    "lang": "Arabic"
+  },
+  "EG-DT": {
+    "cap": "Damietta",
+    "lang": "Arabic"
+  },
+  "EG-BNS": {
+    "cap": "Beni Suef",
+    "lang": "Arabic"
+  },
+  "EG-FYM": {
+    "cap": "Faiyum",
+    "lang": "Arabic"
+  },
+  "EG-MN": {
+    "cap": "Minya",
+    "lang": "Arabic"
+  },
+  "EG-BA": {
+    "cap": "Hurghada",
+    "lang": "Arabic"
+  },
+  "EG-SIN": {
+    "cap": "Arish",
+    "lang": "Arabic"
+  },
+  "EG-WAD": {
+    "cap": "Kharga",
+    "lang": "Arabic"
+  },
+  "EG-MT": {
+    "cap": "Marsa Matruh",
+    "lang": "Arabic"
+  },
+  "EG-KN": {
+    "cap": "Qena",
+    "lang": "Arabic"
+  },
+  "EG-SHG": {
+    "cap": "Sohag",
+    "lang": "Arabic"
+  },
+  "SA-01": {
+    "cap": "Riyadh",
+    "lang": "Arabic"
+  },
+  "SA-02": {
+    "cap": "Makkah",
+    "lang": "Arabic"
+  },
+  "SA-03": {
+    "cap": "Medina",
+    "lang": "Arabic"
+  },
+  "SA-04": {
+    "cap": "Dammam",
+    "lang": "Arabic"
+  },
+  "SA-05": {
+    "cap": "Ha'il",
+    "lang": "Arabic"
+  },
+  "SA-06": {
+    "cap": "Tabuk",
+    "lang": "Arabic"
+  },
+  "SA-07": {
+    "cap": "Arar",
+    "lang": "Arabic"
+  },
+  "SA-08": {
+    "cap": "Sakaka",
+    "lang": "Arabic"
+  },
+  "SA-09": {
+    "cap": "Jazan",
+    "lang": "Arabic"
+  },
+  "SA-10": {
+    "cap": "Najran",
+    "lang": "Arabic"
+  },
+  "SA-11": {
+    "cap": "Al Bahah",
+    "lang": "Arabic"
+  },
+  "SA-12": {
+    "cap": "Buraydah",
+    "lang": "Arabic"
+  },
+  "UA-30": {
+    "cap": "Kyiv",
+    "lang": "Ukrainian"
+  },
+  "UA-63": {
+    "cap": "Kharkiv",
+    "lang": "Ukrainian"
+  },
+  "UA-65": {
+    "cap": "Odesa",
+    "lang": "Ukrainian"
+  },
+  "UA-12": {
+    "cap": "Dnipro",
+    "lang": "Ukrainian"
+  },
+  "UA-46": {
+    "cap": "Lviv",
+    "lang": "Ukrainian"
+  },
+  "UA-48": {
+    "cap": "Mykolaiv",
+    "lang": "Ukrainian"
+  },
+  "UA-51": {
+    "cap": "Odesa",
+    "lang": "Ukrainian"
+  },
+  "UA-53": {
+    "cap": "Poltava",
+    "lang": "Ukrainian"
+  },
+  "UA-56": {
+    "cap": "Rivne",
+    "lang": "Ukrainian"
+  },
+  "UA-59": {
+    "cap": "Sumy",
+    "lang": "Ukrainian"
+  },
+  "UA-61": {
+    "cap": "Ternopil",
+    "lang": "Ukrainian"
+  },
+  "UA-68": {
+    "cap": "Khmelnytskyi",
+    "lang": "Ukrainian"
+  },
+  "UA-71": {
+    "cap": "Cherkasy",
+    "lang": "Ukrainian"
+  },
+  "UA-74": {
+    "cap": "Chernihiv",
+    "lang": "Ukrainian"
+  },
+  "UA-77": {
+    "cap": "Chernivtsi",
+    "lang": "Ukrainian"
+  },
+  "UA-18": {
+    "cap": "Zhytomyr",
+    "lang": "Ukrainian"
+  },
+  "UA-21": {
+    "cap": "Uzhhorod",
+    "lang": "Ukrainian"
+  },
+  "UA-23": {
+    "cap": "Zaporizhzhia",
+    "lang": "Ukrainian"
+  },
+  "UA-26": {
+    "cap": "Ivano-Frankivsk",
+    "lang": "Ukrainian"
+  },
+  "UA-32": {
+    "cap": "Kyiv",
+    "lang": "Ukrainian"
+  },
+  "UA-35": {
+    "cap": "Kropyvnytskyi",
+    "lang": "Ukrainian"
+  },
+  "UA-40": {
+    "cap": "Sevastopol",
+    "lang": "Ukrainian"
+  },
+  "UA-43": {
+    "cap": "Simferopol",
+    "lang": "Ukrainian"
+  },
+  "UA-09": {
+    "cap": "Luhansk",
+    "lang": "Ukrainian"
+  },
+  "UA-14": {
+    "cap": "Donetsk",
+    "lang": "Ukrainian"
+  },
+  "FR-69": {
+    "cap": "Lyon",
+    "lang": "French"
+  },
+  "FR-21": {
+    "cap": "Dijon",
+    "lang": "French"
+  },
+  "FR-35": {
+    "cap": "Rennes",
+    "lang": "French"
+  },
+  "FR-45": {
+    "cap": "Orléans",
+    "lang": "French"
+  },
+  "FR-2A": {
+    "cap": "Ajaccio",
+    "lang": "French"
+  },
+  "FR-67": {
+    "cap": "Strasbourg",
+    "lang": "French"
+  },
+  "FR-59": {
+    "cap": "Lille",
+    "lang": "French"
+  },
+  "FR-75": {
+    "cap": "Paris",
+    "lang": "French"
+  },
+  "FR-76": {
+    "cap": "Rouen",
+    "lang": "French"
+  },
+  "FR-33": {
+    "cap": "Bordeaux",
+    "lang": "French"
+  },
+  "FR-31": {
+    "cap": "Toulouse",
+    "lang": "French"
+  },
+  "FR-44": {
+    "cap": "Nantes",
+    "lang": "French"
+  },
+  "FR-13": {
+    "cap": "Marseille",
+    "lang": "French"
+  },
+  "FR-GP": {
+    "cap": "Basse-Terre",
+    "lang": "French"
+  },
+  "FR-MQ": {
+    "cap": "Fort-de-France",
+    "lang": "French"
+  },
+  "FR-GF": {
+    "cap": "Cayenne",
+    "lang": "French"
+  },
+  "FR-RE": {
+    "cap": "Saint-Denis",
+    "lang": "French"
+  },
+  "FR-YT": {
+    "cap": "Mamoudzou",
+    "lang": "French"
+  }
+}

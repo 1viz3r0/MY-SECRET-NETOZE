@@ -1,0 +1,154 @@
+import { isTauriEnvironment } from './isTauri';
+
+export interface NpcapInterface {
+  id: string;
+  name: string;
+  description: string;
+  ipv4_addresses: string[];
+  ipv6_addresses: string[];
+  mac_address: string;
+  is_loopback: boolean;
+}
+
+export interface CaptureMetrics {
+  status: string;
+  selected_interface: string;
+  packets_captured: number;
+  bytes_captured: number;
+  packets_per_sec: number;
+  bytes_per_sec: number;
+  dropped_packets: number;
+  duration_secs: number;
+}
+
+export interface PacketMetadata {
+  timestamp: string;
+  captured_len: number;
+  orig_len: number;
+  eth_type: string;
+  src_mac: string;
+  dst_mac: string;
+  src_ip: string;
+  dst_ip: string;
+  protocol: string;
+  src_port: number;
+  dst_port: number;
+  tcp_flags: number;
+  arp_sender_ip: string;
+  arp_sender_mac: string;
+  dns_qname: string | null;
+  dns_qtype: string;
+  dns_rcode: number;
+  dns_answers: number;
+}
+
+/**
+ * Checks Npcap driver availability
+ */
+export async function inspectNpcapAvailability(): Promise<[string, string]> {
+  if (isTauriEnvironment()) {
+    try {
+      const { invoke } = await import('@tauri-apps/api/core');
+      return await invoke<[string, string]>('inspect_npcap_availability');
+    } catch (err: any) {
+      return ['ERROR', err?.message || 'Failed to inspect Npcap driver'];
+    }
+  }
+  return [
+    'UNAVAILABLE',
+    'Desktop capability unavailable in browser mode. Run inside native Tauri desktop runtime.',
+  ];
+}
+
+/**
+ * Retrieves list of Npcap capture interfaces
+ */
+export async function getPcapInterfaces(): Promise<NpcapInterface[]> {
+  if (isTauriEnvironment()) {
+    try {
+      const { invoke } = await import('@tauri-apps/api/core');
+      return await invoke<NpcapInterface[]>('get_pcap_interfaces');
+    } catch (err) {
+      console.warn('Failed to get Npcap interfaces:', err);
+    }
+  }
+  return [];
+}
+
+/**
+ * Starts packet capture on selected interface
+ */
+export async function startPacketCapture(interfaceId: string): Promise<void> {
+  if (isTauriEnvironment()) {
+    const { invoke } = await import('@tauri-apps/api/core');
+    await invoke('start_packet_capture', { interfaceId });
+  }
+}
+
+/**
+ * Stops active packet capture
+ */
+export async function stopPacketCapture(): Promise<void> {
+  if (isTauriEnvironment()) {
+    const { invoke } = await import('@tauri-apps/api/core');
+    await invoke('stop_packet_capture');
+  }
+}
+
+/**
+ * Gets live capture metrics
+ */
+export async function getCaptureMetrics(): Promise<CaptureMetrics> {
+  if (isTauriEnvironment()) {
+    try {
+      const { invoke } = await import('@tauri-apps/api/core');
+      return await invoke<CaptureMetrics>('get_capture_metrics');
+    } catch (err) {
+      console.warn('Failed to get capture metrics:', err);
+    }
+  }
+  return {
+    status: 'STOPPED',
+    selected_interface: 'eth0',
+    packets_captured: 0,
+    bytes_captured: 0,
+    packets_per_sec: 0,
+    bytes_per_sec: 0,
+    dropped_packets: 0,
+    duration_secs: 0,
+  };
+}
+
+/**
+ * Subscribes to capture.status events
+ */
+export async function subscribeToCaptureStats(
+  callback: (metrics: CaptureMetrics) => void
+): Promise<() => void> {
+  if (isTauriEnvironment()) {
+    try {
+      const { listen } = await import('@tauri-apps/api/event');
+      return await listen<CaptureMetrics>('capture-stats', (e) => callback(e.payload));
+    } catch (err) {
+      console.warn('Failed to listen to capture.stats:', err);
+    }
+  }
+  return () => {};
+}
+
+/**
+ * Subscribes to capture.status events
+ */
+export async function subscribeToCaptureStatus(
+  callback: (status: string) => void
+): Promise<() => void> {
+  if (isTauriEnvironment()) {
+    try {
+      const { listen } = await import('@tauri-apps/api/event');
+      return await listen<string>('capture-status', (e) => callback(e.payload));
+    } catch (err) {
+      console.warn('Failed to listen to capture.status:', err);
+    }
+  }
+  return () => {};
+}
