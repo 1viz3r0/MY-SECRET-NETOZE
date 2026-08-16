@@ -4,6 +4,7 @@ use std::process::Command;
 use std::time::Duration;
 
 use crate::audit_log::AuditLogEntry;
+use crate::models::{CaptureState, CaptureMetrics};
 
 #[command]
 pub fn audit_log(limit: Option<usize>) -> Result<Vec<AuditLogEntry>, String> {
@@ -155,7 +156,8 @@ pub fn stop_packet_capture(app_handle: AppHandle) {
 pub fn get_capture_metrics() -> Result<CaptureMetrics, String> {
     unsafe {
         if let Some(engine) = CAPTURE_ENGINE.as_ref() {
-            return Ok(engine.get_metrics("STOPPED"));
+            let state = engine.get_state();
+            return Ok(engine.get_metrics(&format!("{:?}", state)));
         }
     }
     Ok(CaptureMetrics {
@@ -168,4 +170,22 @@ pub fn get_capture_metrics() -> Result<CaptureMetrics, String> {
         dropped_packets: 0,
         duration_secs: 0,
     })
+}
+
+#[command]
+pub fn get_capture_engine_state() -> Result<(String, String, u64, u64, u64, bool), String> {
+    unsafe {
+        if let Some(engine) = CAPTURE_ENGINE.as_ref() {
+            let (state, iface, packets, bytes, duration, handle_open) = engine.get_engine_state();
+            return Ok((
+                format!("{:?}", state),
+                iface.unwrap_or_else(|| "".to_string()),
+                packets,
+                bytes,
+                duration,
+                handle_open,
+            ));
+        }
+    }
+    Ok(("STOPPED".to_string(), "".to_string(), 0, 0, 0, false))
 }

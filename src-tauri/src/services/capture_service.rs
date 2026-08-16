@@ -141,6 +141,22 @@ impl CaptureEngine {
     pub fn get_recent_packets(&self, limit: usize) -> Vec<PacketMetadata> {
         self.capture.get_recent_packets(limit)
     }
+
+    pub fn get_engine_state(&self) -> (CaptureState, Option<String>, u64, u64, u64, bool) {
+        let state = self.get_state();
+        let iface = self.active_interface();
+        let packets = *self.capture.packets_captured.lock().unwrap();
+        let bytes = *self.capture.bytes_captured.lock().unwrap();
+        let duration = self
+            .capture
+            .start_time
+            .lock()
+            .unwrap()
+            .map(|t| t.elapsed().as_secs())
+            .unwrap_or(0);
+        let handle_open = self.capture.capture_handle.lock().unwrap().is_some();
+        (state, iface, packets, bytes, duration, handle_open)
+    }
 }
 
 #[cfg(test)]

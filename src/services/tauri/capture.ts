@@ -21,6 +21,18 @@ export interface CaptureMetrics {
   duration_secs: number;
 }
 
+/**
+ * Diagnostics for the capture engine state
+ */
+export interface CaptureEngineDiagnostics {
+  status: string;
+  selected_interface: string;
+  packets_captured: number;
+  bytes_captured: number;
+  duration_secs: number;
+  capture_handle_open: boolean;
+}
+
 export interface PacketMetadata {
   timestamp: string;
   captured_len: number;
@@ -137,9 +149,31 @@ export async function subscribeToCaptureStats(
 }
 
 /**
- * Subscribes to capture.status events
+ * Gets capture engine diagnostics (state, interface, packet counts, handle status)
  */
-export async function subscribeToCaptureStatus(
+export async function getCaptureEngineState(): Promise<CaptureEngineDiagnostics> {
+  if (isTauriEnvironment()) {
+    try {
+      const { invoke } = await import('@tauri-apps/api/core');
+      return await invoke<CaptureEngineDiagnostics>('get_capture_engine_state');
+    } catch (err) {
+      console.warn('Failed to get capture engine state:', err);
+    }
+  }
+  return {
+    status: 'UNAVAILABLE',
+    selected_interface: '',
+    packets_captured: 0,
+    bytes_captured: 0,
+    duration_secs: 0,
+    capture_handle_open: false,
+  };
+}
+
+/**
+ * Subscribes to capture.stats events
+ */
+export async function subscribeToCaptureStats(
   callback: (status: string) => void
 ): Promise<() => void> {
   if (isTauriEnvironment()) {

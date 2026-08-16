@@ -204,8 +204,7 @@ impl NpcapCapture {
                             Ok(packet) => Some((packet.data.to_vec(), chrono::Utc::now().to_rfc3339())),
                             Err(PcapError::TimeoutExpired) => None,
                             Err(err) => {
-                                tracing::error!("Packet capture error: {}", err);
-                                *lock = None;
+                                tracing::warn!("Transient packet capture error: {}", err);
                                 None
                             }
                         }

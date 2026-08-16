@@ -7,10 +7,11 @@ import {
   startPacketCapture,
   stopPacketCapture,
   getCaptureMetrics,
+  getCaptureEngineState,
   subscribeToCaptureStats,
   subscribeToCaptureStatus,
 } from '../services/tauri/capture';
-import type { NpcapInterface, CaptureMetrics } from '../services/tauri/capture';
+import type { NpcapInterface, CaptureMetrics, CaptureEngineDiagnostics } from '../services/tauri/capture';
 
 interface FlowRow {
   flow_id: string;
@@ -95,7 +96,15 @@ export const ConversationTable: React.FC<ConversationTableProps> = ({
     try {
       setCaptureState('STARTING');
       await startPacketCapture(selectedIface);
-      setCaptureState('RUNNING');
+      
+      // Verify capture engine is actually running
+      const diagnostics = await getCaptureEngineState();
+      if (diagnostics.status === 'RUNNING' && diagnostics.capture_handle_open) {
+        setCaptureState('RUNNING');
+      } else {
+        setCaptureState('ERROR');
+        alert(`Capture failed to start. Diagnostics: status=${diagnostics.status}, handle_open=${diagnostics.capture_handle_open}, interface=${diagnostics.selected_interface}`);
+      }
     } catch (err: any) {
       setCaptureState('ERROR');
       alert(`Capture Error: ${err?.message || err}`);
@@ -106,7 +115,15 @@ export const ConversationTable: React.FC<ConversationTableProps> = ({
     try {
       setCaptureState('STOPPING');
       await stopPacketCapture();
-      setCaptureState('STOPPED');
+      
+      // Verify capture engine is actually stopped
+      const diagnostics = await getCaptureEngineState();
+      if (diagnostics.status === 'STOPPED') {
+        setCaptureState('STOPPED');
+      } else {
+        setCaptureState('ERROR');
+        alert(`Capture stop incomplete. Diagnostics: status=${diagnostics.status}, handle_open=${diagnostics.capture_handle_open}`);
+      }
     } catch (err: any) {
       console.error('Failed to stop capture:', err);
     }
