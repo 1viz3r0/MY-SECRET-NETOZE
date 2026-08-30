@@ -1,6 +1,7 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState, useMemo } from 'react';
 import * as THREE from 'three';
 import { buildCountryIndex, resolveCountry, type CountryIndexEntry } from '../lib/countryIndex';
+import { getCapabilityStatus } from '../services/tauri/capabilities';
 
 export type LocationNode = {
   id: string;
@@ -203,6 +204,22 @@ export const Globe3D: React.FC<Globe3DProps> = ({
   const geoStateRef = useRef<'loading' | 'ready' | 'error'>('loading');
   const [pill, setPill] = useState<string | null>(null);
   const clearSelectHighlightRef = useRef<(() => void) | null>(null);
+
+  // ---- layer system (toggleable visualization layers) ----
+  const [layers, setLayers] = useState<'all' | 'none' | 'network' | 'security' | 'geography' | 'telemetry' | keyof any>(
+    'all'
+  );
+  const [layerPreset, setLayerPreset] = useState<'all' | 'none'>('all');
+
+  // ---- filtered nodes based on layer preset ----
+  const filteredNodes = useMemo(() => {
+    if (layerPreset === 'all' || layerPreset === 'none') return nodes;
+    if (layerPreset === 'network') return nodes.filter(n => n.status !== 'low' && n.activeFlowsCount > 0);
+    if (layerPreset === 'security') return nodes.filter(n => n.threatLevel === 'HIGH' || n.threatLevel === 'CRITICAL');
+    if (layerPreset === 'geography') return nodes.filter(n => n.country && n.country !== '');
+    if (layerPreset === 'telemetry') return nodes.filter(n => n.pkts && parseInt(n.pkts) > 0);
+    return nodes;
+  }, [nodes, layerPreset]);
 
   useEffect(() => {
     autoRotateRef.current = isAutoRotate;
@@ -756,7 +773,7 @@ export const Globe3D: React.FC<Globe3DProps> = ({
     const group = globeGroupRef.current;
     if (!group || geoState !== 'ready') return;
 
-    const sig = nodes
+    const sig = filteredNodes
       .map((n) => `${n.id}:${n.status}:${n.lat.toFixed(4)}:${n.lng.toFixed(4)}:${n.pkts}`)
       .join('|');
     if (sig === lastNodesSigRef.current) return; // identical set — no rebuild
@@ -786,7 +803,7 @@ export const Globe3D: React.FC<Globe3DProps> = ({
     const arcsGroup = new THREE.Group();
     const arcMats: THREE.LineBasicMaterial[] = [];
 
-    nodes.forEach((node, idx) => {
+    filteredNodes.forEach((node, idx) => {
       const v = latLngToVec3(node.lat, node.lng, GLOBE_RADIUS + 0.8);
       const marker = makeMarkerSprite(node.color);
       marker.position.copy(v);
@@ -891,6 +908,47 @@ export const Globe3D: React.FC<Globe3DProps> = ({
         </span>
         <span className="text-slate-600">|</span>
         <span className="text-slate-400">{geoState === 'ready' ? countriesRef.current.length : '-'} BORDERS</span>
+      </div>
+
+      {/* Layer preset UI */}
+      <div className="absolute bottom-3 right-3 z-10 flex items-center gap-1 bg-[#040a18]/80 backdrop-blur px-2 py-1 rounded border border-white/10 text-[10px] font-mono pointer-events-auto">
+        <span className="text-slate-400 text-xs opacity-60">layers:</span>
+        <button
+          onClick={() => setLayerPreset('all')}
+          className={layerPreset === 'all' ? 'bg-cyan-500 text-black rounded px-1.5 py-0.5' : 'hover:bg-cyan-300 rounded px-1.5 py-0.5'}
+          title="All layers">
+          All
+        </button>
+        <button
+          onClick={() => setLayerPreset('none')}
+          className={layerPreset === 'none' ? 'bg-cyan-500 text-black rounded px-1.5 py-0.5' : 'hover:bg-cyan-300 rounded px-1.5 py-0.5'}
+          title="No layers">
+          None
+        </button>
+        <button
+          onClick={() => setLayerPreset('network')}
+          className={layerPreset === 'network' ? 'bg-cyan-500 text-black rounded px-1.5 py-0.5' : 'hover:bg-cyan-300 rounded px-1.5 py-0.5'}
+          title="Network layer">
+          Net
+        </button>
+        <button
+          onClick={() => setLayerPreset('security')}
+          className={layerPreset === 'security' ? 'bg-cyan-500 text-black rounded px-1.5 py-0.5' : 'hover:bg-cyan-300 rounded px-1.5 py-0.5'}
+          title="Security layer">
+          Sec
+        </button>
+        <button
+          onClick={() => setLayerPreset('geography')}
+          className={layerPreset === 'geography' ? 'bg-cyan-500 text-black rounded px-1.5 py-0.5' : 'hover:bg-cyan-300 rounded px-1.5 py-0.5'}
+          title="Geography layer">
+          Geo
+        </button>
+        <button
+          onClick={() => setLayerPreset('telemetry')}
+          className={layerPreset === 'telemetry' ? 'bg-cyan-500 text-black rounded px-1.5 py-0.5' : 'hover:bg-cyan-300 rounded px-1.5 py-0.5'}
+          title="Telemetry layer">
+          Tel
+        </button>
       </div>
     </div>
   );

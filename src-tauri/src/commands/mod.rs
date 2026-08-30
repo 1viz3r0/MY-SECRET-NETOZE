@@ -2,14 +2,37 @@ use reqwest::blocking::get;
 use std::net::SocketAddr;
 use std::process::Command;
 use std::time::Duration;
+use tauri::command;
+use std::sync::{Arc, Mutex};
+use tauri::{AppHandle, Manager};
 
-use crate::audit_log::AuditLogEntry;
-use crate::models::{CaptureState, CaptureMetrics};
+use serde::{Deserialize, Serialize};
+
+use crate::models::{CaptureMetrics, NpcapInterface};
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AuditLogEntry {
+    id: i64,
+    timestamp: i64,
+    actor: String,
+    action: String,
+    resource: String,
+    prev_hash: String,
+    curr_hash: String,
+}
+
+static mut CAPTURE_ENGINE: Option<crate::services::CaptureEngine> = None;
+
+fn set_capture_engine(engine: crate::services::CaptureEngine) {
+    unsafe {
+        CAPTURE_ENGINE = Some(engine);
+    }
+}
 
 #[command]
 pub fn audit_log(limit: Option<usize>) -> Result<Vec<AuditLogEntry>, String> {
     let limit = limit.unwrap_or(10).min(500);
-    let conn = crate::db::get_connection()
+    let conn = crate::database::sqlite::open_conn()
         .map_err(|e| format!("Failed to open database: {}", e))?;
     let mut stmt = conn
         .prepare(
@@ -58,7 +81,7 @@ pub fn ping_host(target: String, count: Option<usize>) -> Result<String, String>
     let stdout = String::from_utf8_lossy(&output.stdout);
     let stderr = String::from_utf8_lossy(&output.stderr);
     let combined = format!("{}\n{}", stdout, stderr);
-    
+
     if output.status.success() {
         Ok(combined)
     } else {
@@ -85,7 +108,7 @@ pub fn traceroute(_target: String, _max_hops: Option<usize>) -> Result<String, S
 
 #[command]
 pub fn inspect_npcap_availability() -> Result<(String, String), String> {
-    use crate::services::platform::windows::inspect_npcap;
+    use crate::platform::windows::inspect_npcap;
     let npcap = inspect_npcap();
     if npcap.installed {
         Ok(("AVAILABLE".to_string(), "Npcap Packet Capture Engine is installed and ready.".to_string()))
@@ -122,23 +145,23 @@ pub fn get_pcap_interfaces() -> Result<Vec<crate::models::NpcapInterface>, Strin
 pub fn start_packet_capture(interface_id: String, app_handle: AppHandle) -> Result<(), String> {
     unsafe {
         if CAPTURE_ENGINE.is_none() {
-            let flow_engine = FlowEngine::new();
-            let ja4_engine = Ja4Engine::new();
-            let detection_engine = DetectionEngine::new();
-            let graph_engine = GraphEngine::new();
-            let storyline_builder = StorylineBuilder::new();
-            
-            let engine = CaptureEngine::new(
-                flow_engine,
-                ja4_engine,
-                detection_engine,
-                graph_engine,
-                storyline_builder,
+            let flow_engine = crate::services::FlowEngine::new();
+            let ja4_engine = crate::services::Ja4Engine::new();
+            let detection_engine = crate::services::DetectionEngine::new();
+            let graph_engine = crate::services::GraphEngine::new();
+            let storyline_builder = crate::services::StorylineBuilder::new();
+
+            let engine = crate::services::CaptureEngine::new(
+                Arc::new(Mutex::new(flow_engine)),
+                Arc::new(Mutex::new(ja4_engine)),
+                Arc::new(Mutex::new(detection_engine)),
+                Arc::new(Mutex::new(graph_engine)),
+                Arc::new(Mutex::new(storyline_builder)),
             );
             set_capture_engine(engine);
         }
     }
-    
+
     let engine = unsafe { CAPTURE_ENGINE.as_ref().unwrap() };
     engine.start_capture(interface_id, app_handle)
 }
@@ -157,7 +180,7 @@ pub fn get_capture_metrics() -> Result<CaptureMetrics, String> {
     unsafe {
         if let Some(engine) = CAPTURE_ENGINE.as_ref() {
             let state = engine.get_state();
-            return Ok(engine.get_metrics(&format!("{:?}", state)));
+            return Ok(engine.get_metrics())
         }
     }
     Ok(CaptureMetrics {

@@ -171,9 +171,9 @@ export async function getCaptureEngineState(): Promise<CaptureEngineDiagnostics>
 }
 
 /**
- * Subscribes to capture.stats events
+ * Subscribes to capture.status events
  */
-export async function subscribeToCaptureStats(
+export async function subscribeToCaptureStatus(
   callback: (status: string) => void
 ): Promise<() => void> {
   if (isTauriEnvironment()) {
