@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { Globe3D } from './Globe3D';
 import type { LocationNode, CountryGeo } from './Globe3D';
 import { CountryDetailPanel, type CountryStats } from './CountryDetailPanel';
@@ -8,8 +8,9 @@ import { loadCountryVector, loadAdmin1, type CountryVector, type GeoRegion } fro
 import type { GeoSearchResult } from '../lib/geoSearch';
 import { ArrowRight, RefreshCw, ShieldAlert } from 'lucide-react';
 import type { TabType } from './Sidebar';
-import { getActiveFlows, getFlowSummary, type FlowRecord, type FlowSummaryStats } from '../services/tauri/flows';
+import { getActiveFlows, getFlowSummary, type FlowRecord, type FlowSummaryStats, subscribeToFlowStream } from '../services/tauri/flows';
 import { getCaptureMetrics, type CaptureMetrics } from '../services/tauri/capture';
+import { subscribeToCaptureStats, subscribeToCaptureStatus } from '../services/tauri/capture';
 import { getDetectionSummary, getDetections, type DetectionSummary, type DetectionFinding } from '../services/tauri/detections';
 import {
   getConnectivityStatus,
@@ -84,18 +85,89 @@ export const GlobalIntelView: React.FC<GlobalIntelViewProps> = ({
   const mountedRef = useRef(true);
   const [hubInfo, setHubInfo] = useState<GeoIpEntry | null>(null);
 
+// Telemetry state for Globe3D
+const [captureStatus, setCaptureStatus] = useState<string>('UNAVAILABLE');
+const [captureMetrics, setCaptureMetrics] = useState<{
+  packets_per_sec: number;
+  bytes_per_sec: number;
+  packets_captured: number;
+  bytes_captured: number;
+  status: string;
+}>({
+  packets_per_sec: 0,
+  bytes_per_sec: 0,
+  packets_captured: 0,
+  bytes_captured: 0,
+  status: 'UNAVAILABLE',
+});
+const [activeFlows, setActiveFlows] = useState<LocationNode[]>([]);
+
   const [selectedRegion, setSelectedRegion] = useState<GeoRegion | null>(null);
   const [countryVector, setCountryVector] = useState<CountryVector | null>(null);
   const [regions, setRegions] = useState<GeoRegion[]>([]);
   const [focusRequest, setFocusRequest] = useState<{ type: 'region' | 'city'; code?: string; lat: number; lng: number } | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
 
-  useEffect(() => {
+useEffect(() => {
     mountedRef.current = true;
     return () => {
       mountedRef.current = false;
     };
   }, []);
+
+// Capture telemetry subscriptions
+  useEffect(() => {
+    let unsubscribeStats: () => void = () => {};
+    let unsubscribeStatus: () => void = () => {};
+    let unsubscribeFlows: () => void = () => {};
+
+    subscribeToCaptureStats((metrics: {
+      packets_per_sec: number;
+      bytes_per_sec: number;
+      packets_captured: number;
+      bytes_captured: number;
+      status: string;
+    }) => {
+      setCaptureMetrics(metrics);
+    }).then((_u: () => void) => (unsubscribeStats = _u));
+    subscribeToCaptureStatus((status: string) => setCaptureStatus(status)).then(
+      (_u: () => void) => (unsubscribeStatus = _u)
+    );
+    subscribeToFlowStream((flow: FlowRecord) => {
+      setActiveFlows((prev) => {
+        const exists = prev.some((f) => f.id === flow.flow_id);
+        if (!exists) {
+          return [...prev, {
+            id: flow.flow_id,
+            name: `${flow.src_ip}:${flow.src_port} -> ${flow.dst_ip}:${flow.dst_port}`,
+            country: '',
+            lat: 0,
+            lng: 0,
+            pkts: flow.packet_count.toString(),
+            rtt: '',
+            status: 'low',
+            color: '#3fb3ff',
+            activeFlowsCount: 1,
+            threatLevel: flow.severity || 'low',
+            ip: flow.src_ip,
+          }];
+        }
+        return prev;
+      });
+    }).then((_u: () => void) => (unsubscribeFlows = _u));
+
+    return () => {
+      unsubscribeStats();
+      unsubscribeStatus();
+      unsubscribeFlows();
+    };
+  }, []);
+
+// Convert FlowRecord[] to LocationNode[] for globe display
+  const locationNodes = useMemo(() => {
+    if (activeFlows.length === 0) return [];
+    return activeFlows.map((n): LocationNode => ({ ...n, lat: n.lat ?? 0, lng: n.lng ?? 0 }));
+  }, [activeFlows]);
 
   // Navbar search button opens the geo search modal.
   useEffect(() => {
@@ -577,7 +649,7 @@ export const GlobalIntelView: React.FC<GlobalIntelViewProps> = ({
 
           {/* 3D Globe Viewport */}
           <div className="flex-1 w-full h-full relative">
-            <Globe3D
+<Globe3D
               nodes={globeNodes}
               selectedNode={selectedNode}
               selectedCountry={selectedCountry}
@@ -593,7 +665,10 @@ export const GlobalIntelView: React.FC<GlobalIntelViewProps> = ({
               }}
               isAutoRotate={isAutoRotate}
               hub={hubInfo && hubInfo.latitude != null && hubInfo.longitude != null ? { lat: hubInfo.latitude, lng: hubInfo.longitude } : null}
-            />
+              captureStatus={captureStatus}
+              captureMetrics={captureMetrics}
+              activeFlows={locationNodes}
+              />
 
             {globeNodes.length === 0 && !selectedCountry && (
               <div className="absolute inset-x-0 top-16 z-10 flex justify-center pointer-events-none">

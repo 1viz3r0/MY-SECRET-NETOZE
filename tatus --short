@@ -1,0 +1,159 @@
+warning: in the working copy of 'src-tauri/Cargo.toml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src-tauri/src/commands/mod.rs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src-tauri/src/lib.rs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src-tauri/src/main.rs', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/src-tauri/Cargo.toml b/src-tauri/Cargo.toml[m
+[1mindex 83d793e..4ceb058 100644[m
+[1m--- a/src-tauri/Cargo.toml[m
+[1m+++ b/src-tauri/Cargo.toml[m
+[36m@@ -6,8 +6,6 @@[m [mauthors = ["NET0ZE Team"][m
+ edition = "2021"[m
+ [m
+ [features][m
+[31m-# Portable build: uses an isolated data directory so it never shares state[m
+[31m-# (WebView2 profile, SQLite/DuckDB) with the installed build or another instance.[m
+ portable = [][m
+ [m
+ [build-dependencies][m
+[36m@@ -23,7 +21,7 @@[m [mwindows-sys = { version = "0.52", features = [[m
+     "Win32_Security",[m
+     "Win32_Foundation",[m
+     "Win32_System_Services",[m
+[31m-    "Win32_NetworkManagement_IpHelper",[m
+[32m+[m[32m    "Win32_NetworkManagement_Iphelper",[m
+     "Win32_System_Diagnostics_ToolHelp",[m
+     "Win32_System_EventLog",[m
+     "Win32_System_Memory",[m
+[36m@@ -44,3 +42,7 @@[m [mpcap = "2.4.0"[m
+ chrono = "0.4"[m
+ rusqlite = { version = "0.31", features = ["bundled"] }[m
+ tokio = { version = "1", features = ["full"] }[m
+[32m+[m
+[32m+[m[32m[profile.release][m
+[32m+[m[32mstrip = false[m
+[32m+[m[32mopt-level = 3[m
+[1mdiff --git a/src-tauri/src/commands/mod.rs b/src-tauri/src/commands/mod.rs[m
+[1mindex eed0ebb..097b3d5 100644[m
+[1m--- a/src-tauri/src/commands/mod.rs[m
+[1m+++ b/src-tauri/src/commands/mod.rs[m
+[36m@@ -2,9 +2,30 @@[m [muse reqwest::blocking::get;[m
+ use std::net::SocketAddr;[m
+ use std::process::Command;[m
+ use std::time::Duration;[m
+[32m+[m[32muse tauri::{AppHandle, Manager};[m
+ [m
+[31m-use crate::audit_log::AuditLogEntry;[m
+[31m-use crate::models::{CaptureState, CaptureMetrics};[m
+[32m+[m[32muse serde::{Deserialize, Serialize};[m
+[32m+[m
+[32m+[m[32muse crate::models::{CaptureMetrics, NpcapInterface};[m
+[32m+[m
+[32m+[m[32m#[derive(Debug, Clone, Serialize, Deserialize)][m
+[32m+[m[32mstruct AuditLogEntry {[m
+[32m+[m[32m    id: i64,[m
+[32m+[m[32m    timestamp: i64,[m
+[32m+[m[32m    actor: String,[m
+[32m+[m[32m    action: String,[m
+[32m+[m[32m    resource: String,[m
+[32m+[m[32m    prev_hash: String,[m
+[32m+[m[32m    curr_hash: String,[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mstatic mut CAPTURE_ENGINE: Option<crate::services::CaptureEngine> = None;[m
+[32m+[m
+[32m+[m[32mfn set_capture_engine(engine: crate::services::CaptureEngine) {[m
+[32m+[m[32m    unsafe {[m
+[32m+[m[32m        CAPTURE_ENGINE = Some(engine);[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+ [m
+ #[command][m
+ pub fn audit_log(limit: Option<usize>) -> Result<Vec<AuditLogEntry>, String> {[m
+[36m@@ -58,7 +79,7 @@[m [mpub fn ping_host(target: String, count: Option<usize>) -> Result<String, String>[m
+     let stdout = String::from_utf8_lossy(&output.stdout);[m
+     let stderr = String::from_utf8_lossy(&output.stderr);[m
+     let combined = format!("{}\n{}", stdout, stderr);[m
+[31m-    [m
+[32m+[m
+     if output.status.success() {[m
+         Ok(combined)[m
+     } else {[m
+[36m@@ -85,7 +106,7 @@[m [mpub fn traceroute(_target: String, _max_hops: Option<usize>) -> Result<String, S[m
+ [m
+ #[command][m
+ pub fn inspect_npcap_availability() -> Result<(String, String), String> {[m
+[31m-    use crate::services::platform::windows::inspect_npcap;[m
+[32m+[m[32m    use crate::platform::windows::inspect_npcap;[m
+     let npcap = inspect_npcap();[m
+     if npcap.installed {[m
+         Ok(("AVAILABLE".to_string(), "Npcap Packet Capture Engine is installed and ready.".to_string()))[m
+[36m@@ -122,13 +143,13 @@[m [mpub fn get_pcap_interfaces() -> Result<Vec<crate::models::NpcapInterface>, Strin[m
+ pub fn start_packet_capture(interface_id: String, app_handle: AppHandle) -> Result<(), String> {[m
+     unsafe {[m
+         if CAPTURE_ENGINE.is_none() {[m
+[31m-            let flow_engine = FlowEngine::new();[m
+[31m-            let ja4_engine = Ja4Engine::new();[m
+[31m-            let detection_engine = DetectionEngine::new();[m
+[31m-            let graph_engine = GraphEngine::new();[m
+[31m-            let storyline_builder = StorylineBuilder::new();[m
+[31m-            [m
+[31m-            let engine = CaptureEngine::new([m
+[32m+[m[32m            let flow_engine = crate::services::FlowEngine::new();[m
+[32m+[m[32m            let ja4_engine = crate::services::Ja4Engine::new();[m
+[32m+[m[32m            let detection_engine = crate::services::DetectionEngine::new();[m
+[32m+[m[32m            let graph_engine = crate::services::GraphEngine::new();[m
+[32m+[m[32m            let storyline_builder = crate::services::StorylineBuilder::new();[m
+[32m+[m
+[32m+[m[32m            let engine = crate::services::CaptureEngine::new([m
+                 flow_engine,[m
+                 ja4_engine,[m
+                 detection_engine,[m
+[36m@@ -138,7 +159,7 @@[m [mpub fn start_packet_capture(interface_id: String, app_handle: AppHandle) -> Resu[m
+             set_capture_engine(engine);[m
+         }[m
+     }[m
+[31m-    [m
+[32m+[m
+     let engine = unsafe { CAPTURE_ENGINE.as_ref().unwrap() };[m
+     engine.start_capture(interface_id, app_handle)[m
+ }[m
+[1mdiff --git a/src-tauri/src/lib.rs b/src-tauri/src/lib.rs[m
+[1mindex 8ead002..264f1a1 100644[m
+[1m--- a/src-tauri/src/lib.rs[m
+[1m+++ b/src-tauri/src/lib.rs[m
+[36m@@ -1,5 +1,11 @@[m
+ use tauri::Manager;[m
+ [m
+[32m+[m[32mpub mod commands;[m
+[32m+[m[32mpub mod services;[m
+[32m+[m[32mpub mod models;[m
+[32m+[m[32mpub mod database;[m
+[32m+[m[32mpub mod platform;[m
+[32m+[m
+ fn main() {[m
+     tauri::Builder::default()[m
+         .run(tauri::generate_context!());[m
+[1mdiff --git a/src-tauri/src/main.rs b/src-tauri/src/main.rs[m
+[1mindex a662f6f..64824d7 100644[m
+[1m--- a/src-tauri/src/main.rs[m
+[1m+++ b/src-tauri/src/main.rs[m
+[36m@@ -3,5 +3,18 @@[m
+ [m
+ fn main() {[m
+     tauri::Builder::default()[m
+[32m+[m[32m        .invoke_handler(tauri::generate_handler![[m
+[32m+[m[32m            commands::audit_log,[m
+[32m+[m[32m            commands::ping_host,[m
+[32m+[m[32m            commands::check_port,[m
+[32m+[m[32m            commands::whois_rdap,[m
+[32m+[m[32m            commands::traceroute,[m
+[32m+[m[32m            commands::inspect_npcap_availability,[m
+[32m+[m[32m            commands::get_pcap_interfaces,[m
+[32m+[m[32m            commands::start_packet_capture,[m
+[32m+[m[32m            commands::stop_packet_capture,[m
+[32m+[m[32m            commands::get_capture_metrics,[m
+[32m+[m[32m            commands::get_capture_engine_state,[m
+[32m+[m[32m        ])[m
+         .run(tauri::generate_context!()).expect("Error running tauri application");[m
+ }[m
+\ No newline at end of file[m

@@ -22,9 +22,12 @@ import { authSession, authLogout } from './services/tauri/auth';
 import { getActiveFlows } from './services/tauri/flows';
 import { getDetections } from './services/tauri/detections';
 import { getAttackGraph, subscribeToGraphEvents } from './services/tauri/graph';
+import { subscribeToCaptureStats, subscribeToCaptureStatus } from './services/tauri/capture';
+import { subscribeToFlowStream } from './services/tauri/flows';
 import type { FlowRecord } from './services/tauri/flows';
 import type { DetectionFinding } from './services/tauri/detections';
 import type { AttackGraph } from './services/tauri/graph';
+import type { CaptureMetrics } from './services/tauri/capture';
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('global_intel');
@@ -63,6 +66,19 @@ export const App: React.FC = () => {
   const [selectedField, setSelectedField] = useState<string | null>(null);
   const [graphData, setGraphData] = useState<AttackGraph>({ nodes: [], edges: [] });
 
+  // Capture Telemetry States
+  const [captureMetrics, setCaptureMetrics] = useState<CaptureMetrics>({
+    status: 'UNAVAILABLE',
+    selected_interface: '',
+    packets_captured: 0,
+    bytes_captured: 0,
+    packets_per_sec: 0,
+    bytes_per_sec: 0,
+    dropped_packets: 0,
+    duration_secs: 0,
+  });
+  const [captureStatus, setCaptureStatus] = useState<string>('UNAVAILABLE');
+
   const loadLiveData = async () => {
     try {
       const [flowData, detections, graph] = await Promise.all([
@@ -78,7 +94,7 @@ export const App: React.FC = () => {
     }
   };
 
-  useEffect(() => {
+useEffect(() => {
     loadLiveData();
     const interval = window.setInterval(loadLiveData, 5000);
     let unsubscribe: () => void = () => {};
@@ -89,7 +105,30 @@ export const App: React.FC = () => {
     };
   }, []);
 
-  // Keyboard shortcut handler for CTRL + K (geo search lives in GlobalIntelView)
+// Capture telemetry subscriptions
+  useEffect(() => {
+    let unsubscribeStats: () => void = () => {};
+    let unsubscribeStatus: () => void = () => {};
+    let unsubscribeFlows: () => void = () => {};
+
+    subscribeToCaptureStats((metrics: CaptureMetrics) => setCaptureMetrics(metrics)).then(
+      (_u: () => void) => (unsubscribeStats = _u)
+    );
+    subscribeToCaptureStatus((status: string) => setCaptureStatus(status)).then(
+      (_u: () => void) => (unsubscribeStatus = _u)
+    );
+    subscribeToFlowStream((flow: FlowRecord) => {
+      setFlows((prev) => [...prev, flow]);
+    }).then((_u: () => void) => (unsubscribeFlows = _u));
+
+    return () => {
+      unsubscribeStats();
+      unsubscribeStatus();
+      unsubscribeFlows();
+    };
+  }, []);
+
+// Keyboard shortcut handler for CTRL + K (geo search lives in GlobalIntelView)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
