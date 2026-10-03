@@ -5,6 +5,10 @@ description = "NET0ZE Desktop NTA & IDS Cybersecurity Platform"
 authors = ["NET0ZE Team"]
 edition = "2021"
 
+[lib]
+name = "netoze_desktop"
+path = "src/lib.rs"
+
 [features]
 # Portable build: uses an isolated data directory so it never shares state
 # (WebView2 profile, SQLite/DuckDB) with the installed build or another instance.

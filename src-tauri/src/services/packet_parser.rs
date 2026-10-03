@@ -21,10 +21,29 @@ fn parse_ipv6_addr(bytes: &[u8]) -> String {
     if bytes.len() < 16 {
         return "::".to_string();
     }
-    format!(
-        "{:02x}{:02x}:{:02x}{:02x}:{:02x}{:02x}:{:02x}{:02x}",
-        bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], bytes[5], bytes[6], bytes[7]
-    )
+    let mut octets = [0u8; 16];
+    octets.copy_from_slice(&bytes[..16]);
+    std::net::Ipv6Addr::from(octets).to_string()
+}
+
+/// Returns (ethertype, offset of L3 payload), skipping 802.1Q / QinQ tags.
+fn l3_offset(payload: &[u8]) -> Option<(u16, usize)> {
+    if payload.len() < 14 {
+        return None;
+    }
+    let mut eth_type = u16::from_be_bytes([payload[12], payload[13]]);
+    let mut off = 14usize;
+    for _ in 0..2 {
+        if eth_type != 0x8100 && eth_type != 0x88A8 {
+            break;
+        }
+        if payload.len() < off + 4 {
+            return None;
+        }
+        eth_type = u16::from_be_bytes([payload[off + 2], payload[off + 3]]);
+        off += 4;
+    }
+    Some((eth_type, off))
 }
 
 fn dns_qtype_name(qtype: u16) -> String {
@@ -123,13 +142,12 @@ pub fn parse_raw_packet(payload: &[u8], timestamp: &str) -> PacketMetadata {
         dns_answers: 0,
     };
 
-    if payload.len() < 14 {
+    let Some((eth_type_num, l3_off)) = l3_offset(payload) else {
         return default_meta();
-    }
+    };
 
     let dst_mac = format_mac(&payload[0..6]);
     let src_mac = format_mac(&payload[6..12]);
-    let eth_type_num = u16::from_be_bytes([payload[12], payload[13]]);
 
     let mut eth_type = format!("0x{:04X}", eth_type_num);
     let mut src_ip = "0.0.0.0".to_string();
@@ -145,7 +163,7 @@ pub fn parse_raw_packet(payload: &[u8], timestamp: &str) -> PacketMetadata {
     let mut dns_rcode: i16 = -1;
     let mut dns_answers: u16 = 0;
 
-    let l3_data = &payload[14..];
+    let l3_data = &payload[l3_off..];
 
     if eth_type_num == 0x0800 && l3_data.len() >= 20 {
         eth_type = "IPv4".to_string();
@@ -161,15 +179,17 @@ pub fn parse_raw_packet(payload: &[u8], timestamp: &str) -> PacketMetadata {
             _ => format!("IP_PROTO_{}", proto_num),
         };
 
-        if l3_data.len() >= ihl + 4 {
+        // Ports exist only on TCP/UDP. ICMP (and other L4) must not be parsed as ports.
+        if (proto_num == 6 || proto_num == 17) && ihl >= 20 && l3_data.len() >= ihl + 4 {
             let l4_data = &l3_data[ihl..];
             src_port = u16::from_be_bytes([l4_data[0], l4_data[1]]);
             dst_port = u16::from_be_bytes([l4_data[2], l4_data[3]]);
             if proto_num == 6 && l4_data.len() >= 14 {
                 tcp_flags = l4_data[13];
                 if src_port == 53 || dst_port == 53 {
-                    if l4_data.len() >= 20 {
-                        let (q, t, r, a) = parse_dns(l4_data, 20);
+                    let data_off = ((l4_data[12] >> 4) as usize).saturating_mul(4).max(20);
+                    if l4_data.len() >= data_off + 12 {
+                        let (q, t, r, a) = parse_dns(l4_data, data_off);
                         dns_qname = q;
                         dns_qtype = t;
                         dns_rcode = r;
@@ -199,7 +219,7 @@ pub fn parse_raw_packet(payload: &[u8], timestamp: &str) -> PacketMetadata {
             _ => format!("IPV6_NEXT_{}", next_hdr),
         };
 
-        if l3_data.len() >= 44 {
+        if (next_hdr == 6 || next_hdr == 17) && l3_data.len() >= 44 {
             let l4_data = &l3_data[40..];
             src_port = u16::from_be_bytes([l4_data[0], l4_data[1]]);
             dst_port = u16::from_be_bytes([l4_data[2], l4_data[3]]);
@@ -257,12 +277,9 @@ pub fn parse_raw_packet(payload: &[u8], timestamp: &str) -> PacketMetadata {
 
 /// Returns the TCP payload (after L2/IP/TCP headers) for TLS-layer inspection, if any.
 pub fn l4_payload(payload: &[u8]) -> Option<&[u8]> {
-    if payload.len() < 14 {
-        return None;
-    }
-    let eth_type_num = u16::from_be_bytes([payload[12], payload[13]]);
+    let (eth_type_num, l3_off) = l3_offset(payload)?;
     if eth_type_num == 0x0800 {
-        let l3 = &payload[14..];
+        let l3 = payload.get(l3_off..)?;
         if l3.len() < 20 {
             return None;
         }
@@ -277,7 +294,7 @@ pub fn l4_payload(payload: &[u8]) -> Option<&[u8]> {
         }
         Some(&tcp[data_off..])
     } else if eth_type_num == 0x86DD {
-        let l3 = &payload[14..];
+        let l3 = payload.get(l3_off..)?;
         if l3.len() < 40 || l3[6] != 6 {
             return None;
         }
@@ -385,6 +402,74 @@ mod tests {
         assert_eq!(meta.dns_qtype, "A");
         assert_eq!(meta.dns_rcode, 0);
         assert_eq!(meta.dns_answers, 0);
+    }
+
+    #[test]
+    fn test_ipv6_address_is_complete() {
+        let mut pkt = vec![0u8; 14 + 40];
+        pkt[12] = 0x86;
+        pkt[13] = 0xDD;
+        pkt[14 + 6] = 58; // ICMPv6
+        for i in 0..16 {
+            pkt[14 + 8 + i] = i as u8;
+            pkt[14 + 24 + i] = 0xF0 + (i as u8);
+        }
+        let meta = parse_raw_packet(&pkt, "2026-08-08T18:25:00Z");
+        assert_eq!(meta.eth_type, "IPv6");
+        assert_eq!(meta.protocol, "ICMPv6");
+        assert_eq!(meta.src_port, 0);
+        assert_eq!(meta.dst_port, 0);
+        assert!(meta.src_ip.contains(':'));
+        assert_ne!(meta.src_ip, "0001:0203:0405:0607");
+    }
+
+    #[test]
+    fn test_icmp_does_not_invent_ports() {
+        let mut pkt = vec![0u8; 14 + 20 + 8];
+        pkt[12] = 0x08;
+        pkt[13] = 0x00;
+        pkt[14] = 0x45;
+        pkt[23] = 1; // ICMP
+        pkt[26] = 10;
+        pkt[27] = 0;
+        pkt[28] = 0;
+        pkt[29] = 1;
+        pkt[30] = 8;
+        pkt[31] = 8;
+        pkt[32] = 8;
+        pkt[33] = 8;
+        let meta = parse_raw_packet(&pkt, "2026-08-08T18:25:00Z");
+        assert_eq!(meta.protocol, "ICMP");
+        assert_eq!(meta.src_port, 0);
+        assert_eq!(meta.dst_port, 0);
+    }
+
+    #[test]
+    fn test_vlan_tagged_ipv4() {
+        let mut pkt = vec![0u8; 18 + 20 + 8];
+        pkt[12] = 0x81;
+        pkt[13] = 0x00;
+        pkt[16] = 0x08;
+        pkt[17] = 0x00;
+        pkt[18] = 0x45;
+        pkt[27] = 17; // UDP
+        pkt[30] = 192;
+        pkt[31] = 168;
+        pkt[32] = 1;
+        pkt[33] = 2;
+        pkt[34] = 8;
+        pkt[35] = 8;
+        pkt[36] = 8;
+        pkt[37] = 8;
+        pkt[38] = 0xC0;
+        pkt[39] = 0x00;
+        pkt[40] = 0x00;
+        pkt[41] = 0x35;
+        let meta = parse_raw_packet(&pkt, "2026-08-08T18:25:00Z");
+        assert_eq!(meta.eth_type, "IPv4");
+        assert_eq!(meta.protocol, "UDP");
+        assert_eq!(meta.src_ip, "192.168.1.2");
+        assert_eq!(meta.dst_port, 53);
     }
 
     #[test]

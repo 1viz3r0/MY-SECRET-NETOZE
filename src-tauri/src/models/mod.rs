@@ -21,7 +21,9 @@ pub use phase2::{
     DetailedAdapterInfo, DetailedSystemInfo, TcpConnectionEntry, TelemetryPayload,
     WindowsEventEntry,
 };
-pub use phase3::{CaptureMetrics, CaptureState, NpcapInterface, PacketMetadata};
+pub use phase3::{
+    CaptureEngineDiagnostics, CaptureMetrics, CaptureState, NpcapInterface, PacketMetadata,
+};
 pub use phase4::{FlowRecord, FlowSummaryStats};
 pub use phase5::{Ja4Observation, Ja4Stats};
 pub use phase6::{

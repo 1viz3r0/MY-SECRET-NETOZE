@@ -21,6 +21,16 @@ pub struct NpcapInterface {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct CaptureEngineDiagnostics {
+    pub status: String,
+    pub selected_interface: String,
+    pub packets_captured: u64,
+    pub bytes_captured: u64,
+    pub duration_secs: u64,
+    pub capture_handle_open: bool,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CaptureMetrics {
     pub status: String,
     pub selected_interface: String,

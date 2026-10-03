@@ -160,11 +160,15 @@ impl FlowEngine {
 
         // Enforce bounded memory (max 1000 active flows)
         if queue.len() >= 1000 {
-            if let Some(oldest_key) = queue.keys().next().cloned() {
+            let oldest_key = queue
+                .iter()
+                .min_by_key(|(_, f)| f.ts_end)
+                .map(|(k, _)| k.clone());
+            if let Some(oldest_key) = oldest_key {
+                internal.remove(&oldest_key);
                 if let Some(evicted_flow) = queue.remove(&oldest_key) {
-                    // Persist evicted flow immediately
                     if let Err(err) = persist_flow_records(&[evicted_flow.clone()]) {
-                        tracing::warn!("⚠️ Evicted flow persistence failed: {}", err);
+                        tracing::warn!("Evicted flow persistence failed: {}", err);
                         self.persistence_failures.fetch_add(1, Ordering::Relaxed);
                         let mut retries = self.retry_buffer.lock().unwrap();
                         if retries.len() >= 200 {
